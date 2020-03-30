@@ -207,3 +207,250 @@ html {
 ```
 关于最佳实践的解释：[传送门](https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/)
 > 假设 html 中的某个区块内需要使用不一样的盒子模型，这时候继承的方式就可以很好的切换盒子模型了
+
+## 布局
+### 常见布局
+- float（浮动布局）
+- position（定位布局）
+    - relative：相对定位 - 相对于块级元素或行内块元素自身位置进行定位
+    - absolute：绝对定位 - 相对于最近的已定位的父级元素（relative, absolute, fixed）进行定位，默认是相对于 body
+    - fixed：悬浮定位 - 相对于屏幕视口进行定位（祖先元素不能设置 transform 属性为非 none，否则会以该祖先元素进行定位）[传送门](https://www.imooc.com/article/67784)
+- table（表格布局）
+
+### flex 布局
+
+webkit 内核的浏览器需加上 -webkit-
+```css
+.box{
+    display: flex;
+    display: -webkit-flex;
+}
+```
+> 注意：设置为 flex 布局之后，子元素的 float、clear 和 vertical-align 属性都会无效
+
+#### 介绍
+flex 布局支持横向和纵向，水平方向称为「主轴」，垂直方向称为「交叉轴」。
+因而 flex 又支持反向排布，所以又有主轴的开始结束位置，交叉轴的开始结束位置，可以想象成一个 xy 坐标轴。
+
+#### 属性 - 值
+
+- flex-direction（排列方向）
+    - row：默认值，主轴为水平方向，起点在左端
+    - row-reverse：主轴为水平方向，起点在右端
+    - column：主轴为垂直方向，起点在上沿
+    - column：主轴为垂直方向，起点在下沿
+
+- flex-wrap（换行方式）
+    - nowarp：默认值，不换行，所有 item 挤在一行里
+    - warp：换行
+    - wrap-reverse：换行，且第一行在下方
+
+- flex-flow（为前两个的复合属性）
+```css
+.box{
+    flex-flow: row nowrap;  // 默认值
+}
+```
+
+- justify-content（主轴上的对齐方式，以 row 为例）
+    - flex-start：默认值，左对齐
+    - flex-end：右对齐
+    - center：水平居中对齐
+    - space-between：两端对齐，item 之间间隔相等
+    - space-around：两端对齐，item 两侧间隔相等，因此一般 item 之间间隔会大一点
+
+- align-items（交叉轴的对齐方式，以 column为例）
+    - stretch：默认值，如果 item 未设置高度或者设为 auto，则 item 的高度占满容器的高度
+    - flex-start：顶端对齐
+    - flex-end：低端对齐
+    - center：垂直居中对齐
+    - baseline：以第一个 item 的第一行文字基线对齐
+
+- align-content（）
+    - stretch：默认值
+
+
+### 网格布局
+
+
+## 非布局样式
+
+### 字体
+```css
+// 字体族，从左往右寻找渲染字符
+font-family: "PingFang SC", "Microsoft Yahei", serif, monospace
+```
+### 行高
+```css
+line-height:  // 设置行高，元素会相对于父元素垂直居中 [传送门](https://www.w3school.com.cn/cssref/pr_dim_line-height.asp)
+vertical-align:  // 设置垂直对齐方式 [传送门](https://www.w3school.com.cn/css/pr_pos_vertical-align.asp)
+```
+### 背景
+```css
+背景颜色
+渐变色背景 
+多背景叠加（CSS3）
+背景图片和属性（雪碧图）  // 减少http 请求
+base64 和性能优化  // 针对小图标, 减少http 请求
+多分辨率适配   // background-size 压缩图片
+```
+### 边框
+```css
+border
+    - 属性：大小 类型 颜色
+    - 边框背景图
+    - 边框衔接（三角形...）
+outline  // 轮廓线，在 border 外围，不会占据空间
+```
+### 滚动
+```css
+overflow: visible;  // 默认值
+overflow: hidden;  // 溢出部分隐藏
+overflow: scroll;  // 溢价部分可滚动查看（始终显示）
+overflow: auto;  // 如果溢价，可滚动查看
+```
+### **换行**
+```css
+word-wrap( css3: overflow-wrap)  // 通过换行控制是否保留单词
+word-break  // 针对多字节文字
+white-space  // 空白处是否断行
+// 可组合使用
+```
+
+
+## 效果属性
+### **box-shadow**：[投影](https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-shadow)
+    - 营造层次感（立体感）
+    - 充当没有宽度的边框
+    - 特殊效果（如：画一只机器猫）
+
+### **text-shadow**：[投影-文字](https://developer.mozilla.org/zh-CN/docs/Web/CSS/text-shadow)
+    - 立体感
+    - 印刷品质感
+
+### **border-radius**： [边框圆角](https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-radius)
+    - 圆角矩形
+    - 圆形
+    - 半圆 / 扇形
+    - 一些奇怪的角角
+
+### **background**：[背景](https://developer.mozilla.org/zh-CN/docs/Web/CSS/background)
+    - 纹理、图案
+    - 渐变
+    - 雪碧图动画
+    - 背景图尺寸适应
+
+### **clip-path**：[裁剪](https://developer.mozilla.org/zh-CN/docs/Web/CSS/clip-path)
+    - 对容器进行裁剪（可配合 svg 进行裁剪）
+    - 动画
+    - 常见的几何图形
+    - 自定义路径
+
+### **transform**：[变换](https://developer.mozilla.org/zh-CN/docs/Web/CSS/transform)
+    - perspective: 500px;  // 设置 z 坐标轴的高度
+    - transform-style: preserve-3d;  // 3D 变换
+    - translate 位移
+    - scale 缩放
+    - rotate 翻转
+    - skew 倾斜
+
+
+## 预处理器
+### **scss**
+
+> 只列出常用的几个用法，深入学习 [传送门](https://www.sass.hk/guide/)
+
+* 嵌套规则
+
+```css
+#app{
+    .nav-view{
+        float: left;
+        width: 200px;
+    }
+    p{
+        font-size: 16px;
+    }
+    a{
+        color: blue;
+        &:hover{    // & 表示父级选择器
+            color: red;
+        }
+    }
+}
+```
+
+* 变量
+
+```css
+$c-theme: blue;  // 定义
+p{
+    background-color: $c-theme;  // 引用
+}
+```
+
+* 混合器
+
+```css
+@mixin radius-large {
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+}
+@mixin whh($w: 100px, $h: 100px){
+    width: $w;
+    height: $h;
+    line-height: $h;
+}
+// 引用
+.content-view{
+    @include whh(200px, 300px);
+    @include radius-large;
+}
+```
+
+* 继承
+
+```css
+.border-error{
+    border: 1px solid red;
+}
+.border-success{
+    @extend .border-error;
+    border-color: green;
+}
+```
+
+### **less**
+
+> 只列出常用的几个用法，深入学习 [传送门](https://less.bootcss.com/)
+
+* 嵌套规则（和 scss 差不多）
+* 变量
+
+```css
+@c-theme: blue;
+p{
+    background-color: @c-theme;
+}
+```
+
+* 混合器
+
+```css
+.radius-large {
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+}
+.whh(@w: 100px, @h: 100px){
+    width: @w;
+    height: @h;
+    line-height: @h;
+}
+// 引用
+.content-view{
+    .whh(200px, 300px);
+    .radius-large()；
+}
+```
