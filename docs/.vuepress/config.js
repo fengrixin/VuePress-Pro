@@ -78,6 +78,11 @@ module.exports = {
                         '/learn/js/array'
                     ]
                 }
+            ],
+            '/watch/': [
+                '/watch/repository',
+                '/watch/website',
+                '/watch/article'
             ]
         },
         lastUpdated: '上次更新'
