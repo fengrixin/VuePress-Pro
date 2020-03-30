@@ -8,6 +8,6 @@
     "build:prod": "vuepress build docs"
   },
   "keywords": [],
-  "author": "",
+  "author": "rixin",
   "license": "ISC"
 }
