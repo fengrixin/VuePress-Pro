@@ -78,6 +78,12 @@ module.exports = {
                         '/learn/js/array'
                     ]
                 }
+            ],
+            '/learn/css/':[
+                '/learn/css/'
+            ],
+            'learn/html/': [
+                '/learn/html'
             ]
         },
         lastUpdated: '上次更新'
