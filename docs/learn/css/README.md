@@ -218,12 +218,15 @@ html {
 - table（表格布局）
 
 ### flex 布局
+> 详细内容 - [阮一峰的网络日志](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
 
-webkit 内核的浏览器需加上 -webkit-
+![兼容性](http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071003.jpg)
+webkit 内核的浏览器必须加上 -webkit-
 ```css
 .box{
     display: flex;
-    display: -webkit-flex;
+    display: inline-flex; // 行内元素也可以使用 flex 布局
+    display: -webkit-flex; /* Safari */
 }
 ```
 > 注意：设置为 flex 布局之后，子元素的 float、clear 和 vertical-align 属性都会无效
@@ -232,8 +235,7 @@ webkit 内核的浏览器需加上 -webkit-
 flex 布局支持横向和纵向，水平方向称为「主轴」，垂直方向称为「交叉轴」。
 因而 flex 又支持反向排布，所以又有主轴的开始结束位置，交叉轴的开始结束位置，可以想象成一个 xy 坐标轴。
 
-#### 属性 - 值
-
+#### 容器上的属性
 - flex-direction（排列方向）
     - row：默认值，主轴为水平方向，起点在左端
     - row-reverse：主轴为水平方向，起点在右端
@@ -257,7 +259,7 @@ flex 布局支持横向和纵向，水平方向称为「主轴」，垂直方向
     - flex-end：右对齐
     - center：水平居中对齐
     - space-between：两端对齐，item 之间间隔相等
-    - space-around：两端对齐，item 两侧间隔相等，因此一般 item 之间间隔会大一点
+    - space-around：两端对齐，item 两侧间隔相等，因此一般 item 之间间隔会大一倍
 
 - align-items（交叉轴的对齐方式，以 column为例）
     - stretch：默认值，如果 item 未设置高度或者设为 auto，则 item 的高度占满容器的高度
@@ -266,11 +268,44 @@ flex 布局支持横向和纵向，水平方向称为「主轴」，垂直方向
     - center：垂直居中对齐
     - baseline：以第一个 item 的第一行文字基线对齐
 
-- align-content（）
-    - stretch：默认值
+- align-content（多根轴线的对齐方式，只对轴线起作用，不针对每个 item，如果只有一根轴线，该属性不起作用）
+    - stretch：默认值，轴线占满容器高度
+    - flex-start：与交叉轴起点对齐
+    - flex-end：与交叉轴的终点对齐
+    - center：与交叉轴的中点对齐
+    - space-between：与交叉轴两端对齐，轴线之间的间隔平均分布
+    - space-around：两端对齐，轴线两侧间隔相等，因此一般轴线之间间隔会大一倍
+
+#### item 上的属性
+- order（设置 item 的排列顺序）
+    - \<integer>：数值越小，排列越靠前，默认为 0，可为负数
+
+- flex-grow（设置 item 的放大比例）
+    - \<integer>：默认为 0，即如果存在剩余空间也不放大。如果所有 item 的 flex-grow 属性都为 1，则均分剩余空间。
+
+- flex-shrink（设置 item 的缩小比例）
+    - \<integer>：默认为 1，即如空间不足，该 item 将缩小。设置为 0 不会缩小，负数对该属性无效
+
+- flex-basis（在分配多余空间之前，设置 item 占据的主轴空间）
+    - auto，默认值，即 item 的本来大小
+    - \<length>：可以设置为 width 一样的值，比如 10px、20%等，则 item 将占据固定空间
+
+- flex（是 grow、shrink、basis 的简写，建议优先使用这个属性，因为浏览器会推算相关值）
+    - 0 1 auto：默认值，后两个属性可选
+    - auto：快捷键，相当于 1 1 auto
+    - none：快捷键，相当于 0 0 auto
+
+- align-self（允许 item 可以有与其他 item 不一样的对齐方式，可覆盖 align-items）
+    - auto：默认值，继承容器的 align-items 属性
+    - stretch：如果 item 未设置高度或者设为 auto，则 item 的高度占满容器的高度
+    - flex-start：顶端对齐
+    - flex-end：低端对齐
+    - center：垂直居中对齐
+    - baseline：以第一个 item 的第一行文字基线对齐
 
 
 ### 网格布局
+
 
 
 ## 非布局样式
