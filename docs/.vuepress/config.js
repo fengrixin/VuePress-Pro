@@ -80,6 +80,12 @@ module.exports = {
                     ]
                 }
             ],
+            '/learn/css/': [
+                '/learn/css/'
+            ],
+            'learn/html/': [
+                '/learn/html'
+            ],
             '/watch/': [
                 '/watch/repository',
                 '/watch/website',
