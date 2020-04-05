@@ -80,7 +80,8 @@ module.exports = {
                 }
             ],
             '/learn/css/': [
-                '/learn/css/'
+                '/learn/css/',
+                '/learn/css/magic'
             ],
             'learn/html/': [
                 '/learn/html'
