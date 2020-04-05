@@ -44,13 +44,14 @@ module.exports = {
                         items: [
                             {text: '第三方库', link: '/watch/repository'},
                             {text: '好玩的网站', link: '/watch/website'},
-                            {text: '牛掰的文章', link: '/watch/article'}
+                            {text: '牛掰的文章', link: '/watch/article'},
+                            {text: '扩展&插件', link: '/watch/plugin'},
                         ]
                     },
                     {
                         text: '作品',
                         items: [
-                            {text: '微冷知识', link: ''}
+                            {text: '微冷知识', link: 'http://app.mi.com/details?id=com.rixin.cold'}
                         ]
                     }
                 ]
@@ -89,7 +90,8 @@ module.exports = {
             '/watch/': [
                 '/watch/repository',
                 '/watch/website',
-                '/watch/article'
+                '/watch/article',
+                '/watch/plugin'
             ]
         },
         lastUpdated: '上次更新'
