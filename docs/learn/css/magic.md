@@ -3,7 +3,7 @@ title: 神奇的 CSS
 ---
 
 ## filter
-![兼容性](https://img2018.cnblogs.com/blog/1347172/201906/1347172-20190621164420781-1461999075.png)
+[MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/filter)
 
 ### 灰度
 > 一般用法：将整个页面变成灰色

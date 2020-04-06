@@ -30,8 +30,8 @@ module.exports = {
                     {
                         text: '电梯',
                         items: [
-                            {text: 'Webpack', link: '/learn/webpack/'},
-                            {text: 'Gulp', link: '/learn/gulp'}
+                            {text: 'Webpack', link: '/learn/tools/webpack'},
+                            {text: 'Gulp', link: '/learn/tools/gulp'}
                         ]
                     }
                 ]
@@ -76,6 +76,7 @@ module.exports = {
                     title: 'ES6',
                     children: [
                         '/learn/js/es6',
+                        '/learn/js/string',
                         '/learn/js/array'
                     ]
                 }
