@@ -76,8 +76,8 @@ module.exports = {
                     title: 'ES6',
                     children: [
                         '/learn/js/es6',
-                        '/learn/js/string',
-                        '/learn/js/array'
+                        '/learn/js/array',
+                        '/learn/js/string'
                     ]
                 }
             ],
