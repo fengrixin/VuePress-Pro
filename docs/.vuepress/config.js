@@ -72,14 +72,9 @@ module.exports = {
                 '/learn/algorithm/algorithm',
             ],
             '/learn/js/': [
-                {
-                    title: 'ES6',
-                    children: [
-                        '/learn/js/es6',
-                        '/learn/js/array',
-                        '/learn/js/string'
-                    ]
-                }
+                '/learn/js/es6',
+                '/learn/js/point',
+                '/learn/js/tools',
             ],
             '/learn/css/': [
                 '/learn/css/',
