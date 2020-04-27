@@ -2,7 +2,50 @@
 title: 知识点
 ---
 
+::: tip
+主要参考慕课网双越老师的[《快速搞定前端JavaScript面试》](https://coding.imooc.com/class/400.html)
+:::
+
+## 基础知识
+
+### typeof
+```javascript
+/** 判断所有值类型 */
+typeof undefined // 'undefined'
+typeof '' // 'string'
+typeof 1 // 'number'
+typeof true // 'boolean'
+typeof Symbol('s') // 'symbol'
+
+/** 判断引用类型 */
+typeof null // 'object'
+typeof [] // 'object'
+typeof {} // 'object'
+
+/** 判断函数 */
+typeof console.log // 'function'
+typeof function() {} // 'function'
+```
+
+### instanceof
+判断变量是否属于对象的实例
+```javascript
+
+```
+
+### 类型转换
+经常涉及到类型转换的场景有以下几种：
+- 字符串拼接
+- ==
+- if 语句和逻辑运算
+
 ## 原型&原型链
+
+### constructor
+
+### 属性
+
+### 方法
 
 ## 闭包与作用域
 
