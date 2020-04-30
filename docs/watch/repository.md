@@ -39,3 +39,7 @@ title: 第三方库
 
 - [photoswipe](https://github.com/dimsemenov/photoswipe) 图片预览（可上下页切换，适配移动端）
 
+## docx 转 html
+
+- [mammoth](https://github.com/mwilliamson/mammoth.js)
+- [demo](https://jstool.gitlab.io/zh-cn/demo/preview-ms-word-docx-document-in-browser)
