@@ -4,9 +4,48 @@ title: 知识点
 
 ## 原型&原型链
 
-## 闭包与作用域
+## 作用域&闭包
 
 ## 异步&单线程
+
+## 深拷贝
+
+### JSON
+> 经常使用，如果对象内存在函数（Function），parse 后函数会变成空对象 {}
+```javascript
+let data = {
+    rowCount: 2,
+    list: [{
+        id: 1,
+        name: '肥宅水'
+    },{
+        id: 2,
+        name: '神仙水'
+    }]
+}
+let data2 = JSON.parse(JSON.stringify(data))
+data2.rowCount = 3
+console.log(data) // 还是原来的
+```
+
+### 递归函数
+```javascript
+function cloneDeep(obj) {
+  let tempObj = Array.isArray(obj) ? [] : {}
+  if (obj && typeof obj === 'object') {
+    for (let key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        if (obj[key] && typeof obj[key] === 'object') {
+          tempObj[key] = cloneDeep(obj[key])
+        } else {
+          tempObj[key] = obj[key]
+        }
+      }
+    }
+  }
+  return tempObj
+}
+```
 
 ## 函数防抖&节流
 

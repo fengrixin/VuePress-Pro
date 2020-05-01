@@ -2,9 +2,9 @@
 title: ES6+
 ---
 
-## 作用域
+## 变量
 
-#### let & const
+### let & const
 
 ::: tip
  API 用法直接去 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects) 查就好了
