@@ -3,7 +3,20 @@ module.exports = {
     title: 'fengrixin',
     description: 'I don\'t know anything with certainty, but seeing the stars makes me dream.',
     head: [
-        ['link', {rel: 'icon', href: '/favicon.ico'}]
+        ['link', {rel: 'icon', href: '/favicon.ico'}],
+        ['script', {}, `
+         (function(){
+            var html = document.createElement('script');
+            html.src = 'https://www.googletagmanager.com/gtag/js?id=UA-166891571-1';
+            var script = document.getElementsByTagName('script')[0]'
+            script.parentNode.insertBefore(html, script);
+            
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments)}
+            gtag('js', new Date());
+            gtag('config', 'UA-166891571-1');
+         })();
+        `]
     ],
     themeConfig: {
         nav: [
@@ -59,7 +72,9 @@ module.exports = {
             {
                 text: '唠一唠',
                 items: [
-                    {text: '害羞中...', link: ''}
+                    // {text: '关于生活', link: '/chat/life'},
+                    // {text: '关于工作', link: '/chat/work'},
+                    {text: '关于投资', link: '/chat/invest'}
                 ]
             },
             {text: 'GitHub', link: 'https://github.com/fengrixin'}
@@ -80,7 +95,7 @@ module.exports = {
                 '/learn/css/',
                 '/learn/css/magic'
             ],
-            'learn/html/': [
+            '/learn/html/': [
                 '/learn/html'
             ],
             '/watch/': [
@@ -88,8 +103,21 @@ module.exports = {
                 '/watch/website',
                 '/watch/article',
                 '/watch/plugin'
+            ],
+            '/chat/': [
+                // '/chat/life',
+                // '/chat/work',
+                '/chat/invest'
             ]
         },
         lastUpdated: '上次更新'
-    }
+    },
+    plugins: [
+        [
+            '@vuepress/google-analytics',
+            {
+                'ga': 'UA-166891571-1'
+            }
+        ]
+    ]
 }
