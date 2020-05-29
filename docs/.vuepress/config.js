@@ -16,7 +16,11 @@ module.exports = {
             gtag('js', new Date());
             gtag('config', 'UA-166891571-1');
          })();
-        `]
+        `],
+        ['meta', {name: 'keywords', content: '冯日新, fengrixin, rixin, 飘渺云轩'}],
+        ['meta', {name: 'author', content: 'rixin, s2675563468, fengrixin@yeah.net'}],
+        ['meta', {name: 'copyright', content: 'rixin'}],
+        ['meta', {name: 'renderer', content: 'webkit'}], // 指定默认 webkit 内核渲染
     ],
     themeConfig: {
         nav: [
