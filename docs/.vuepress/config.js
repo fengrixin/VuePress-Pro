@@ -73,14 +73,14 @@ module.exports = {
                     }
                 ]
             },
-            {
-                text: '唠一唠',
-                items: [
-                    // {text: '关于生活', link: '/chat/life'},
-                    // {text: '关于工作', link: '/chat/work'},
-                    {text: '关于投资', link: '/chat/invest'}
-                ]
-            },
+            // {
+            //     text: '唠一唠',
+            //     items: [
+            //         // {text: '关于生活', link: '/chat/life'},
+            //         // {text: '关于工作', link: '/chat/work'},
+            //         {text: '关于投资', link: '/chat/invest'}
+            //     ]
+            // },
             {text: 'GitHub', link: 'https://github.com/fengrixin'}
         ],
         sidebarDepth: 2,

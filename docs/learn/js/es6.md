@@ -5,15 +5,13 @@ title: ES6+
 ## 变量
 
 ### let & const
+> ES6 新增的变量声明
 
-::: tip
- API 用法直接去 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects) 查就好了
-:::
-
-
-## [Object](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object)
-
-## [Function](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function)
+### 类型
+| | | | | | | | |
+| --- |:---:|:---:|:---:|:---:|:---:|:---:| ---:| 
+| 值类型 | String | Number | Boolean | Undefined | Null | Symbol | BigInt |
+| 引用类型 | Array | Object | Function | Map | Set | | | |
 
 ## [Array](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array)
 
@@ -148,6 +146,59 @@ console.log('3'.padStart(6, '#&')) // #&#&#3
 - padEnd
 ```javascript
 console.log('3'.padEnd(2, '0')) // 30
+```
+
+## [Object](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object)
+### defineProperty
+
+### getOwnPropertyDescriptor
+
+## [Function](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function)
+### 参数
+- 默认参数
+```javascript
+function fn(x, y=2, z) {
+  console.log(x, y, z)
+}
+fn() // undefined 2 undefined
+```
+- 可变参数
+> 可变参数后不可再有其他参数
+```javascript
+function fn(x, ...params) {
+  console.log(x, params)
+}
+fn(1, 2, 3, 4) // 1 [2, 3, 4]
+```
+- 传参-拆开数组
+```javascript
+function fn(x=1, y=2, z=3) {
+  console.log(x+y+z)
+}
+fn(...[4]) // 9
+fn(...[4, 5]) // 12
+fn(...[4, 5, 6]) // 15
+```
+
+### 箭头函数
+> 在箭头函数中，this 指向属于外层作用域
+```javascript
+window.x = 2
+const fn = (x) => {
+    return this.x + 1
+}
+fn(1) // 3
+```
+#### 注意事项
+- 如果返回值是表达式，可省略 return 和 {}
+```javascript
+const fn = x => x+1
+fn(1) // 2
+```
+- 如果返回值是对象，需要用括号包起来
+```javascript
+const fn = (x) => ({x: x+1})
+fn(1) // {x: 2}
 ```
 
 ## [Number](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Number)

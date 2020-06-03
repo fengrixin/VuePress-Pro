@@ -9,6 +9,6 @@ features:
 - title: 看一看 
   details: 就看看 不说话
 - title: 唠一唠
-  details: 要是唠这个我可就不困了
+  details: 想的太多做的太少少少少少
 footer: MIT Licensed | Copyright © 2017-present rixin
 ---
