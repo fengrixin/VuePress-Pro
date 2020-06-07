@@ -100,7 +100,7 @@ module.exports = {
                 '/learn/css/magic'
             ],
             '/learn/html/': [
-                '/learn/html'
+                '/learn/html/'
             ],
             '/watch/': [
                 '/watch/repository',
