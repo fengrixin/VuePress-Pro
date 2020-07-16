@@ -48,6 +48,8 @@ title: 网站
 
 - [tableconvert](https://tableconvert.com) 在线表格编辑器
 
+- [稿定设计](https://www.uupoop.com) 在线 PS 软件（P 图，编辑 svg 图片不在话下）
+
 ## 前端大神的博客
 
 - [阮一峰的网络日志](http://www.ruanyifeng.com/blog)
