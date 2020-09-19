@@ -33,8 +33,8 @@ module.exports = {
                         items: [
                             {text: '数据结构和算法', link: '/learn/algorithm/'},
                             {text: 'JavaScript', link: '/learn/js/es6'},
-                            {text: 'CSS3', link: '/learn/css/'},
-                            {text: 'HTML5', link: '/learn/html/'}
+                            {text: 'CSS', link: '/learn/css/'},
+                            {text: 'HTML', link: '/learn/html/'},
                         ]
                     },
                     {
@@ -42,13 +42,14 @@ module.exports = {
                         items: [
                             {text: 'Vue', link: '/learn/vue/'},
                             {text: '小程序', link: '/learn/mini/'},
+                            {text: 'TypeScript', link: '/learn/typescript/'},
                         ]
                     },
                     {
                         text: '电梯',
                         items: [
                             {text: 'Webpack', link: '/learn/tools/webpack'},
-                            {text: 'Gulp', link: '/learn/tools/gulp'}
+                            {text: 'Gulp', link: '/learn/tools/gulp'},
                         ]
                     }
                 ]

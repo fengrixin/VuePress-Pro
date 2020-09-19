@@ -25,8 +25,16 @@ title: 第三方库
 ### Image
 - [tui.image-editor](https://ui.toast.com/tui-image-editor/) 功能齐全的基于 canvas 的在线图片编辑
 
+- [img-2](https://github.com/RevillWeb/img-2) 一个提高图片加载性能和体验的库，懒加载使用 web worker 模糊预览
+
 ### 图表
+- [ECharts](https://echarts.apache.org/examples/zh/index.html) 功能强大的图标库 - 百度出品
+
+- [AntV](https://antv.vision/zh) 功能强大的图标库 - 阿里出品
+
 - [chart.xkcd](https://github.com/timqian/chart.xkcd) 手绘风格的图表库
+
+- [sketchviz](https://sketchviz.com/new) 手绘风格的流程图
 
 ### Scroll
 - [body-scroll-lock](https://github.com/willmcpo/body-scroll-lock) 滚动条（解决滚动穿透问题）

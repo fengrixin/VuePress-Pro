@@ -10,6 +10,9 @@ title: 网站
 - [Flex 布局游戏](https://flexboxfroggy.com)
 > 一个引导式的学习 Flex 布局的游戏，用 flex 布局让青蛙跳到荷叶上就算完成，游戏里面几乎包含了所有常用的属性，这样学习起来很有趣嘞，形象好记忆，要是 Flex 布局还不熟的话，在这多练练。
 
+- [can i use](https://caniuse.com) 
+> 查看属性和方法的兼容性
+
 ## JavaScript
 
 - [JavaScript 秘密花园](https://bonsaiden.github.io/JavaScript-Garden/zh/)
@@ -37,16 +40,23 @@ title: 网站
 
 - [JS Bin](https://jsbin.com)
 > 轻量级在线编辑器网站，界面简洁干净，临时想调试简单的 HTML 或 JS 代码可以考虑去这里试一试。
+ 
+- [StackBlitz](https://stackblitz.com/)
+> VSCode 风格的在线编辑器
 
 ## 在线工具
 
 - [js 混淆加密](https://www.sojson.com/jsobfuscator.html) 非常简便的混淆加密工具
 
-- [草料二维码](https://cli.im/) 一切都可变为二维码
+- [草料二维码](https://cli.im) 一切都可变为二维码
 
-- [在线工具网站 - favicon](https://tool.lu/favicon/) favicon 图标生成
+- [TinyPNG](https://tinypng.com) 压缩图片
+
+- [在线工具网站 - favicon](https://tool.lu/favicon) favicon 图标生成
 
 - [tableconvert](https://tableconvert.com) 在线表格编辑器
+
+- [稿定设计](https://www.uupoop.com) 在线 PS 软件（P 图，编辑 svg 图片不在话下）
 
 ## 前端大神的博客
 

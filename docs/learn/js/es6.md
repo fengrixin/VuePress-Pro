@@ -5,7 +5,7 @@ title: ES6+
 ## 变量
 
 ### let & const
-> ES6 新增的变量声明
+> ES6 新增的变量声明，没有 var 的变量提升效果
 
 ### 类型
 | | | | | | | | |
@@ -151,7 +151,7 @@ console.log('3'.padEnd(2, '0')) // 30
 ## [Object](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object)
 ### defineProperty
 
-### getOwnPropertyDescriptor
+### getOwnPropertyDescriptors
 
 ## [Function](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function)
 ### 参数
@@ -202,6 +202,31 @@ fn(1) // {x: 2}
 ```
 
 ## [Number](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Number)
+### Number 和 parseInt 的区别
+- Number 可格式化浮点数，parseInt 只能格式化成整数
+```javascript
+console.log(Number('12.34')) // 12.34
+console.log(parseInt('12.34')) // 12
+```
+- Number 不能格式化带有除数字外的字符串，parseInt 可格式化头部为数字的字符串
+```javascript
+console.log(Number('123abc')) // NaN
+console.log(parseInt('123abc')) // 123
+```
+### toFixed(n)
+> 保留小数点后几位，默认为 0 ，返回字符串
+
+### 0.1+0.2!==0.3
+> 由于浮点数的精度问题，0.1+0.2=0.30000000000000004 <br/>
+> 因此，非整数的 Number 类型无法用 ==/=== 来比较
+
+正确的比较方法：
+```javascript
+function equalFloat(num){
+ return Math.abs(num) <= Number.EPSILON
+}
+console.log(equalFloat(0.1+0.2-0.3)) // true
+```
 
 ## [Date](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date)
 
