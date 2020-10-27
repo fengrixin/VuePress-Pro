@@ -41,13 +41,13 @@ module.exports = {
                         text: '楼层',
                         items: [
                             {text: 'Vue', link: '/learn/vue/'},
-                            {text: '小程序', link: '/learn/mini/'},
-                            {text: 'TypeScript', link: '/learn/typescript/'},
+                            {text: '小程序', link: '/learn/mini/index'},
                         ]
                     },
                     {
                         text: '电梯',
                         items: [
+                            {text: 'TypeScript', link: '/learn/tools/typescript'},
                             {text: 'Webpack', link: '/learn/tools/webpack'},
                             {text: 'Gulp', link: '/learn/tools/gulp'},
                         ]
@@ -102,6 +102,19 @@ module.exports = {
             ],
             '/learn/html/': [
                 '/learn/html/'
+            ],
+            '/learn/mini/': [
+                '/learn/mini/',
+                '/learn/mini/issue'
+            ],
+            '/learn/vue/': [
+                '/learn/vue/',
+                '/learn/vue/issue'
+            ],
+            '/learn/tools/': [
+                '/learn/tools/typescript',
+                '/learn/tools/webpack',
+                '/learn/tools/gulp',
             ],
             '/watch/': [
                 '/watch/repository',

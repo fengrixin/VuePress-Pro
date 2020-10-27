@@ -1,6 +1,10 @@
 ---
 title: 小程序
 ---
+
+## 优化产品使用体验
+- hover-class
+
 ## 代码片段
 - 更新小程序
 ```javascript

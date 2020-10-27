@@ -149,9 +149,15 @@ console.log('3'.padEnd(2, '0')) // 30
 ```
 
 ## [Object](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object)
-### defineProperty
 
-### getOwnPropertyDescriptors
+## 追加/合并属性
+> 将一个或多个对象与目标对象合并，目标对象已经存在的，即覆盖，不存在的，即追加
+> 操作后会原地改变目标对象，并返回目标对象
+```javascript
+let target = {a: 1, b: 2}
+Object.assign(target, {b: 3, c:4}) // {a: 1, b: 3, c: 4}
+console.log(target) // {a: 1, b: 3, c: 4}
+```
 
 ## [Function](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function)
 ### 参数
