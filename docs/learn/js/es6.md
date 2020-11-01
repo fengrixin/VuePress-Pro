@@ -63,7 +63,11 @@ console.log(Array(5).fill(0)) //[0,0,0,0,0]
 - concat：合并两个或多个数组
 - slice：切割数组
 - map：遍历数组，对每一项进行处理
-- filter：遍历数组，对数组进行筛选，剔除不需要的 item
+- filter：遍历数组，对数组进行筛选，剔除不符合条件的 item
+```javascript
+const arr = [1, 2, 3, 4]
+console.log(arr.filter(item=>item!==2)) // [1, 3, 4]
+```
 - flat：深度遍历，返回给定层数的新数组
 ```javascript
 const arr = [1,2,[3,4,[5,6]]]
