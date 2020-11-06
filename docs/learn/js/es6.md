@@ -239,10 +239,30 @@ console.log(equalFloat(0.1+0.2-0.3)) // true
 ```
 
 ## [Date](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date)
-
-## [Map](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map)
+> 日期对象
+- Date.now() 返回当前时间戳
 
 ## [Set](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set)
+> 值集合，且唯一（即不可重复，无论是基本类型或是对象的引用）
+- 属性：[size]
+- 常用方法：[add]  [delete]  [has]  [clear]
+- 遍历：[for of] [forEach]
+```javascript
+let set = new Set([1, 2, 3])
+set.size // 3
+set.add('2')
+set.add({a:1})
+set.delete(2) // true
+```
+
+## [Map](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map)
+> 键值对集合
+- 属性：[size]
+- 常用方法：[set] [delete] [has] [clear]
+- 遍历：[for of] [forEach]
+```javascript
+let map = new Map([[1,2], [3, 4]])
+```
 
 ## [Symbol](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
 
