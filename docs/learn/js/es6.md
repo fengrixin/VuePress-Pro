@@ -30,7 +30,7 @@ title: ES6+
 - fill：给数组填充一个固定值（可以给定开始结束位置）
 ```javascript
 // 创建一个长度为 5 初始值为 0 的数组
-console.log(Array(5).fill(0)) //[0,0,0,0,0]
+Array(5).fill(0) //[0,0,0,0,0]
 ```
 
 #### 查
@@ -66,12 +66,12 @@ console.log(Array(5).fill(0)) //[0,0,0,0,0]
 - filter：遍历数组，对数组进行筛选，剔除不符合条件的 item
 ```javascript
 const arr = [1, 2, 3, 4]
-console.log(arr.filter(item=>item!==2)) // [1, 3, 4]
+arr.filter(item=>item!==2) // [1, 3, 4]
 ```
 - flat：深度遍历，返回给定层数的新数组
 ```javascript
 const arr = [1,2,[3,4,[5,6]]]
-console.log(arr.flat(2)) // [1,2,3,4,5,6]
+arr.flat(2) // [1,2,3,4,5,6]
 ```
 
 ### Iterator
@@ -80,21 +80,25 @@ console.log(arr.flat(2)) // [1,2,3,4,5,6]
 - keys：只包含索引
 - values：只包含值
 
-### Array.form
+### 初始化数组
+- Array.from
 > 可以将类数组转换为数组 <br/>
 > [类数组](https://www.imooc.com/article/48944)：arguments、document.querySelector 的值、string
 ```javascript
-console.log(Array.from('rixin')) // ['r','i','x','i','n']
+Array.from('rixin') // ['r','i','x','i','n']
 
 // 创建一个长度为 5 且初始值为 0 的数组
-console.log(Array.from({length:5}, ()=>0)) // [0,0,0,0,0]
+Array.from({length:5}, ()=>0) // [0,0,0,0,0]
+
+// 创建一个长度为 5 且初始值为 1-5 的数组
+Array.from(Array(5).fill(0), (v,k)=>k+1) // [1,2,3,4,5]
 ```
 
-### Array.of
-> 创建数组
+- Array.of
+> 创建数组，一个参数对应一个值
 ```javascript
-console.log(Array.of(5)) // [5]
-console.log(Array.of(1,2,3)) // [1,2,3]
+Array.of(5) // [5]
+Array.of(1,2,3) // [1,2,3]
 ```
 
 
@@ -136,7 +140,7 @@ console.log(Array.of(1,2,3)) // [1,2,3]
 function formatZero(num, length) {
   return (Array(length).join('0') + num).slice(-length)
 }
-console.log(formatZero(3, 2)) // 03
+formatZero(3, 2) // 03
 ```
 
 ES8 之后，增加了这两个 API（对 String 补白的方式）
@@ -247,13 +251,13 @@ fn(1) // {x: 2}
 ### Number 和 parseInt 的区别
 - Number 可格式化浮点数，parseInt 只能格式化成整数
 ```javascript
-console.log(Number('12.34')) // 12.34
-console.log(parseInt('12.34')) // 12
+Number('12.34') // 12.34
+parseInt('12.34') // 12
 ```
 - Number 不能格式化带有除数字外的字符串，parseInt 可格式化头部为数字的字符串
 ```javascript
-console.log(Number('123abc')) // NaN
-console.log(parseInt('123abc')) // 123
+Number('123abc') // NaN
+parseInt('123abc') // 123
 ```
 ### toFixed(n)
 > 保留小数点后几位，默认为 0 ，返回字符串
@@ -267,7 +271,7 @@ console.log(parseInt('123abc')) // 123
 function equalFloat(num){
  return Math.abs(num) <= Number.EPSILON
 }
-console.log(equalFloat(0.1+0.2-0.3)) // true
+equalFloat(0.1+0.2-0.3) // true
 ```
 
 ## [Date](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date)
