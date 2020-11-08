@@ -120,7 +120,7 @@ const cloneDeep = (obj, hash = new WeakMap()) => {
 }
 ```
 
-### Lodash.cloneDeep
+### [Lodash.cloneDeep](https://lodash.com/docs/4.17.15#cloneDeep)
 > Lodash 中的深拷贝方法，可以做到全类型深拷贝
 
 ## 函数防抖&节流

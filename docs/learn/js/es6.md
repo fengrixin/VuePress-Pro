@@ -154,7 +154,7 @@ console.log('3'.padEnd(2, '0')) // 30
 
 ## [Object](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object)
 
-## Object.defineProperty
+### Object.defineProperty
 给对象新增/修改一个属性，并指定属性的配置
 ```js
 let obj = {}
@@ -170,7 +170,7 @@ Object.defineProperty(obj, 'key', {
 ```
 > Object.defineProperties 增强版，可新增/修改多个属性
 
-## Object.getOwnPropertyDescriptor
+### Object.getOwnPropertyDescriptor
 获取属性的 props(配置)
 ```js
 let obj = {key: 'value'}
@@ -180,7 +180,7 @@ Object.getOwnPropertyDescriptor(obj, 'key')
 
 > getOwnPropertyDescriptors 增强版，获取对象所有属性的 props
 
-## Object.assign
+### Object.assign
 追加/合并属性，经常用于浅拷贝。
 > 将一个或多个对象与目标对象合并，目标对象已经存在的，即覆盖，不存在的，即追加 <br/>
 > 操作后会原地改变目标对象，并返回目标对象
