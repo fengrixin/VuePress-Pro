@@ -154,13 +154,45 @@ console.log('3'.padEnd(2, '0')) // 30
 
 ## [Object](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object)
 
-## 追加/合并属性
-> 将一个或多个对象与目标对象合并，目标对象已经存在的，即覆盖，不存在的，即追加
+## Object.defineProperty
+给对象新增/修改一个属性，并指定属性的配置
+```js
+let obj = {}
+Object.defineProperty(obj, 'key', {
+    configurable: false, // true-可更改该属性名或删除该defineProperty 时属性通过 ，默新增认 false
+    enumerable: false, // true-可枚举该属性，通过 defineProperty 新增时默认 false
+    writable: false, // true-可修改该属性值，通过 defineProperty 新增时默认 false
+    value: 'value',
+    get() {},
+    set(v) {}
+})
+// {key: 'value'}
+```
+> Object.defineProperties 增强版，可新增/修改多个属性
+
+## Object.getOwnPropertyDescriptor
+获取属性的 props(配置)
+```js
+let obj = {key: 'value'}
+Object.getOwnPropertyDescriptor(obj, 'key')
+// {configurable: false, enumerable: false,writable: false,value: 'value',get() {},set(v) {}} 
+```
+
+> getOwnPropertyDescriptors 增强版，获取对象所有属性的 props
+
+## Object.assign
+追加/合并属性，经常用于浅拷贝。
+> 将一个或多个对象与目标对象合并，目标对象已经存在的，即覆盖，不存在的，即追加 <br/>
 > 操作后会原地改变目标对象，并返回目标对象
 ```javascript
 let target = {a: 1, b: 2}
 Object.assign(target, {b: 3, c:4}) // {a: 1, b: 3, c: 4}
 console.log(target) // {a: 1, b: 3, c: 4}
+```
+通过该方法浅拷贝，只能拷贝源对象的可枚举属性，且属性的 prop 配置将会重置为普通数据属性，也无法拷贝源对象的原型
+> 可使用以下方法实现拷贝不可枚举属性、props、原型
+```js
+Object.create(Object.getPrototypeOf(obj), Object.getOwnPropertyDescriptors(obj))
 ```
 
 ## [Function](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function)

@@ -2,10 +2,6 @@
 title: 知识点
 ---
 
-::: tip
-主要参考慕课网双越老师的[《快速搞定前端JavaScript面试》](https://coding.imooc.com/class/400.html)
-:::
-
 ## 基础知识
 
 ### typeof
@@ -14,17 +10,24 @@ title: 知识点
 typeof undefined // 'undefined'
 typeof '' // 'string'
 typeof 1 // 'number'
+typeof BigInt(123) // 'bigint'
 typeof true // 'boolean'
 typeof Symbol('s') // 'symbol'
 
-/** 判断引用类型 */
+/** 特殊 */
 typeof null // 'object'
+
+/** 判断引用类型 */
 typeof [] // 'object'
 typeof {} // 'object'
+typeof new String() // 'object' new 出来的都是对象，除了 new Function()
+typeof new Set() // 'object'
+typeof new Map() // 'object'
 
 /** 判断函数 */
 typeof console.log // 'function'
 typeof function() {} // 'function'
+typeof new Function() // 'function'
 ```
 
 ### instanceof
@@ -37,7 +40,7 @@ typeof function() {} // 'function'
 经常涉及到类型转换的场景有以下几种：
 - 字符串拼接
 - ==
-- if 语句和逻辑运算
+- 逻辑运算
 
 ## 原型&原型链
 
@@ -52,26 +55,32 @@ typeof function() {} // 'function'
 ## 异步&单线程
 
 ## 深拷贝
+测试用例
+```js
+{
+    arr: [1, 2, 3],
+    date: new Date(0),
+    func: ()=>{console.log('--')},
+    inf: Infinity,
+    map: new Map([[1,2]]),
+    nan: NaN,
+    obj: {a: 1},
+    reg: /123/,
+    set: new Set([1,2]),
+    symbol: Symbol('1'),
+    und: undefined,
+}
+```
 
 ### JSON
-> 经常使用，如果对象内存在函数（Function），parse 后函数会变成空对象 {}
+> 业务中最实用，只能拷贝基本类型、数组和对象 <br/>
+> 无法拷贝 Infinity、NaN、reg(正则)、undefined、Symbol、Function、Date、Set、Map
 ```javascript
-let data = {
-    rowCount: 2,
-    list: [{
-        id: 1,
-        name: '肥宅水'
-    },{
-        id: 2,
-        name: '神仙水'
-    }]
-}
-let data2 = JSON.parse(JSON.stringify(data))
-data2.rowCount = 3
-console.log(data) // 还是原来的
+JSON.parse(JSON.stringify(data))
 ```
 
 ### 递归函数
+> 相比 JSON 拷贝而言，此函数无法拷贝 reg(正则)、Function、Date、Set、Map
 ```javascript
 function cloneDeep(obj) {
   let tempObj = Array.isArray(obj) ? [] : {}
@@ -89,6 +98,30 @@ function cloneDeep(obj) {
   return tempObj
 }
 ```
+
+### 最优方案
+> 当然，这只是不使用第三方的最优方案，最优的当然是使用 Lodash.cloneDeep
+```js
+const isComplexDataType = obj => (typeof obj === 'object' || typeof obj === 'function') && (obj !== null)
+
+const cloneDeep = (obj, hash = new WeakMap()) => {
+    if (hash.has(obj)) return hash.get(obj)
+    let type = [Date, RegExp, Set, Map, WeakSet, WeakMap];
+    if(type.includes(obj.constructor)) return new obj.constructor(obj)
+    
+    let cloneObj = Object.create(Object.getPrototypeOf(obj), Object.getOwnPropertyDescriptors(obj));
+    hash.set(obj, cloneObj);
+    
+    for (let key of Reflect.ownKeys(obj)){
+        cloneObj[key] = (isComplexDataType(obj[key]) && typeof obj[key] !== 'function') ? cloneDeep(obj[key], hash) : obj[key];
+    }
+
+    return cloneObj;
+}
+```
+
+### Lodash.cloneDeep
+> Lodash 中的深拷贝方法，可以做到全类型深拷贝
 
 ## 函数防抖&节流
 
