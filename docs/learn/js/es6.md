@@ -121,10 +121,10 @@ Array.of(1,2,3) // [1,2,3]
 
 ### 处理返回新字符串
 - concat：连接字符串
-- repeat：重复字符串（整数次）
+- repeat：将字符串重复（整数次）
 - replace：替换字符串（可正则替换）
-- slice：剪切字符串（接受负数）
-- substring：剪切字符串（负数会转换为 0）
+- slice：剪切字符串（接受负数，开始结束坐标固定）
+- substring：剪切字符串（负数会转换为 0，哪个参数小哪个就是开始坐标）
 - toLocalLowerCase：转化成小写（加上 Local 稳妥一些，一些特定地区的转化比较特殊）
 - toLocalUpperCase：转化成大写
 - trim：两端去空白
@@ -160,7 +160,7 @@ console.log('3'.padEnd(2, '0')) // 30
 
 ### Object.defineProperty
 给对象新增/修改一个属性，并指定属性的配置
-```js
+```javascript
 let obj = {}
 Object.defineProperty(obj, 'key', {
     configurable: false, // true-可更改该属性名或删除该defineProperty 时属性通过 ，默新增认 false
@@ -176,13 +176,16 @@ Object.defineProperty(obj, 'key', {
 
 ### Object.getOwnPropertyDescriptor
 获取属性的 props(配置)
-```js
+```javascript
 let obj = {key: 'value'}
 Object.getOwnPropertyDescriptor(obj, 'key')
 // {configurable: false, enumerable: false,writable: false,value: 'value',get() {},set(v) {}} 
 ```
 
 > getOwnPropertyDescriptors 增强版，获取对象所有属性的 props
+
+### Object.getPropertyOf
+返回对象的原型
 
 ### Object.assign
 追加/合并属性，经常用于浅拷贝。
@@ -195,11 +198,35 @@ console.log(target) // {a: 1, b: 3, c: 4}
 ```
 通过该方法浅拷贝，只能拷贝源对象的可枚举属性，且属性的 prop 配置将会重置为普通数据属性，也无法拷贝源对象的原型
 > 可使用以下方法实现拷贝不可枚举属性、props、原型
-```js
+```javascript
 Object.create(Object.getPrototypeOf(obj), Object.getOwnPropertyDescriptors(obj))
 ```
 
+### 冻结对象
+**Object.freeze()** 对源对象进行冻结，对象被冻结后，不可增删改
+
+> Object.isFrozen  判断是否被冻结 <br/>
+> Object.preventExtensions  把对象变为不可扩展 <br/>
+> Object.isExtensible  判断是否可扩展 <br/>
+> Object.seal  把对象封闭起来 <br/>
+> Object.isSealed  判断是否被密封 <br/>
+
+### -0等于+0？ NaN不等于NaN？
+```javascript
+-0 === +0  // true
+NaN === NaN  // false
+```
+对于以上这种情况，可以使用 **Object.is(v1, v2)**
+```javascript
+Object.is(-0, 0)  // false
+Object.is(NaN, NaN)  // true
+```
+
 ## [Function](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function)
+
+### bind
+### apply & call
+
 ### 参数
 - 默认参数
 ```javascript
@@ -260,7 +287,7 @@ Number('123abc') // NaN
 parseInt('123abc') // 123
 ```
 ### toFixed(n)
-> 保留小数点后几位，默认为 0 ，返回字符串
+> 保留小数点后几位，会四舍五入，默认为 0 ，返回字符串
 
 ### 0.1+0.2!==0.3
 > 由于浮点数的精度问题，0.1+0.2=0.30000000000000004 <br/>
@@ -275,8 +302,16 @@ equalFloat(0.1+0.2-0.3) // true
 ```
 
 ## [Date](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date)
-> 日期对象
-- Date.now() 返回当前时间戳
+- Date.now()  当前时间戳
+- Date.prototype.getFullYear()  年份
+- Date.prototype.getMouth()  月份 - 1
+- Date.prototype.getDate()  几号
+- Date.prototype.getDay()  周几，周日是 0
+- Date.prototype.getHours()  几点
+- Date.prototype.getMinutes()  几分
+- Date.prototype.getSeconds()  几秒
+- Date.prototype.getTime() 创建时的时间戳
+
 
 ## [Set](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set)
 > 值集合，且唯一（即不可重复，无论是基本类型或是对象的引用）
@@ -292,12 +327,16 @@ set.delete(2) // true
 ```
 
 ## [Map](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map)
-> 键值对集合
+> 键值对集合，因为键可以是任意类型，所以更适合用来替代对象
 - 属性：[size]
-- 常用方法：[set] [delete] [has] [clear]
+- 常用方法：[set] [get] [delete] [has] [clear]
 - 遍历：[for of] [forEach]
 ```javascript
-let map = new Map([[1,2], [3, 4]])
+let map = new Map([['key',2], [2, 4]])
+map.size // 2
+map.set('key', 5)
+map.get(2)
+map.delete('key')
 ```
 
 ## [Symbol](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
