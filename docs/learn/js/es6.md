@@ -5,7 +5,7 @@ title: ES6+
 ## 变量
 
 ### let & const
-> ES6 新增的变量声明，没有 var 的变量提升效果
+ES6 新增的变量声明，不同于 var 会变量提升，let 和 const 声明的变量在顶部到初始化前，都会处在一个「暂存死区」中，如果在暂存死区中调用此变量，则会报错 ReferenceError
 
 ### 类型
 | | | | | | | | |
@@ -228,6 +228,8 @@ Object.is(NaN, NaN)  // true
 ### apply & call
 
 ### 参数
+> 函数的参数是函数内部的局部变量，参数是值传递的
+
 - 默认参数
 ```javascript
 function fn(x, y=2, z) {
@@ -333,7 +335,7 @@ set.delete(2) // true
 - 遍历：[for of] [forEach]
 ```javascript
 let map = new Map([['key',2], [2, 4]])
-map.size // 2
+map.size // 2 
 map.set('key', 5)
 map.get(2)
 map.delete('key')
