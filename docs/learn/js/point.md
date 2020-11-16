@@ -2,9 +2,10 @@
 title: 知识点
 ---
 
-## 基础知识
+## 判断类型
 
 ### typeof
+一般用来判断基本类型，引用类型无法判断
 ```javascript
 /** 判断所有值类型 */
 typeof undefined // 'undefined'
@@ -31,9 +32,14 @@ typeof new Function() // 'function'
 ```
 
 ### instanceof
-判断变量是否属于对象的实例
+右边的 prototype 在左边变量的原型链上
 ```javascript
+let s = new String()
+s instanceof String  // true
 
+Function instanceof Function // true
+Object instanceof Object // true
+Function instanceof Object // true
 ```
 
 ### 类型转换
