@@ -2,6 +2,11 @@
 title: 知识点
 ---
 
+> 参考来源：
+> [《重学前端》](https://time.geekbang.org/column/article/83302) 、
+> [《浏览器工作原理与实践》](https://time.geekbang.org/column/article/119046) 、
+> [《中高级前端大厂面试秘籍》](https://ke.qq.com/course/457262)
+
 ## 判断类型
 
 ### typeof
@@ -57,12 +62,11 @@ Function instanceof Object // true
 ### 方法
 
 ## 闭包与作用域
-> JavaScript 采用的是静态作用域，也叫词法作用域。 <br/>
-> 也就是说函数在定义的时候函数的作用域就决定了
->
+JavaScript 采用的是静态作用域，也叫词法作用域。也就是说函数在定义的时候函数的作用域就决定了
+
 ES6 之前，只有全局作用域和函数作用域，ES6 之后才加入了块级作用域
 
-### JavaScript 代码的执行流程
+#### JavaScript 代码的执行流程
 ![流程图](https://static001.geekbang.org/resource/image/64/1e/649c6e3b5509ffd40e13ce9c91b3d91e.png)
 ![流程图](https://static001.geekbang.org/resource/image/06/13/0655d18ec347a95dfbf843969a921a13.png)
 
@@ -95,11 +99,13 @@ ES2018（this 值归入词法环境中，然后增加了一些其他内容）
 - 当调用一个函数时，函数体内的代码才会被编译，并创建「函数执行上下文」，一般情况下，在函数执行结束之后，创建的函数执行上下文会被销毁
 - 当使用 eval 函数时，eval 的代码也会被编译，并创建执行上下文
 
-### 变量提升
-在代码编译阶段，JavaScript 引擎会把变量和（声明式）函数的声明部分放入到了变量环境中。
+#### 变量提升
+**var & function**
 
-变量提升后，会给变量设置默认值，也就是 undefined；（声明式）函数不同于变量，会整个函数体提升
-```javascript
+在代码编译阶段，JavaScript 引擎会把（var）变量和（声明式）函数的声明部分放入到了「变量环境」中。
+
+变量提升后，会给变量设置默认值，也就是 undefined；（声明式）函数不同于变量，会整个函数体提升。
+```
 VariableEnvironment:
      showName ->function : {console.log("showName被调用"),
      myname -> undefined, 
@@ -109,8 +115,60 @@ VariableEnvironment:
 - 如果变量和函数同名，那么在编译阶段，变量的声明会被忽略。
     > 函数提升要比变量提升的优先级要高一些，且不会被变量声明覆盖，但是会被变量赋值之后覆盖。
 
+**let & const**
+
+let 和 const 声明的变量会放入到「词法环境」的一个单独区域中，在词法环境内部维护了一个小型栈结构，按作用域链的关系把相应作用域的 let & const 变量压入栈中
+
+let & const 在块级作用域中和函数作用域一样，都是代码执行到相应位置后才去编译，将对应的变量放入到词法环境的栈顶
+
+```javascript
+function foo(){
+    var a = 1
+    let b = 2
+    {
+      let b = 3
+      var c = 4
+      let d = 5
+      console.log(a)
+      console.log(b)
+    }
+    console.log(b)
+    console.log(c)
+    console.log(d)
+}
+foo()
+```
+![](https://static001.geekbang.org/resource/image/f9/67/f9f67f2f53437218baef9dc724bd4c67.png)
+![](https://static001.geekbang.org/resource/image/7e/fa/7e0f7bc362e0dea21d27dc5fb08d06fa.png)
+
+变量查找流程：
+![](https://static001.geekbang.org/resource/image/06/08/06c06a756632acb12aa97b3be57bb908.png)
+
+当作用域块执行结束后，其内部定义的变量（let&const）就会从词法环境的栈顶弹出销毁
+![](https://static001.geekbang.org/resource/image/d4/28/d4f99640d62feba4202aa072f6369d28.png)
+
+**总结**：
+
+- var 声明的变量，创建和初始化会被提升，赋值不会被提升
+- let 和 const 声明的变量，创建和初始化会被提升，赋值不会被提升，但在赋值之前调取变量 JS 引擎会抛出一个错误(ReferenceError)，术语叫「暂存死区」
+- 声明式的 function， 创建、初始化和赋值均会被提升
+- 变量的查找路径为：词法环境(内部栈) -> 变量环境
+
 ### 调用栈
-调用栈是用来管理「函数调用关系」的一种数据结构
+> 调用栈是用来管理函数调用关系的一种数据结构。
+
+JS 引擎正是利用「栈」的这种数据结构来管理执行上下文的，在执行上下文创建好之后，JS 引擎会将执行上下文压入栈中。
+通常称为「执行上下文栈」，又称「调用栈」
+
+**在浏览器端，栈底永远是 window，也就是全局执行上下文**
+
+栗子：
+![](https://static001.geekbang.org/resource/image/87/f7/87d8bbc2bb62b03131802fba074146f7.png)
+
+#### 函数调用
+
+
+### 作用域链
 
 ### 闭包
 > 本质是一个绑定了「执行环境」的函数
@@ -122,7 +180,7 @@ VariableEnvironment:
 ## 深拷贝
 测试用例
 ```js
-{
+obj = {
     arr: [1, 2, 3],
     date: new Date(0),
     func: ()=>{console.log('--')},

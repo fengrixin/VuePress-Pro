@@ -4,7 +4,7 @@ title: 数据结构和算法
 
 > 参考来源：
 > 《漫画算法》- 小灰的算法之旅、
-> 《数据结构与算法之美》- 极客时间
+> [《数据结构与算法之美》](https://time.geekbang.org/column/article/39972)
 
 ## why & what
 

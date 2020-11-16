@@ -2,12 +2,7 @@
 title: ES6+
 ---
 
-## 变量
-
-### let & const
-ES6 新增的变量声明，不同于 var 会变量提升，let 和 const 声明的变量在顶部到初始化前，都会处在一个「暂存死区」中，如果在暂存死区中调用此变量，则会报错 ReferenceError
-
-### 类型
+## 变量类型
 | | | | | | | | |
 | --- |:---:|:---:|:---:|:---:|:---:|:---:| ---:| 
 | 值类型 | String | Number | Boolean | Undefined | Null | Symbol | BigInt |
