@@ -205,10 +205,46 @@ foo()
 
 
 ### 闭包
-> 本质是一个绑定了「执行环境」的函数
-- 广义上，普通函数都是闭包
-- 狭义上，在外部可以访问到函数内的变量的函数，称为闭包
+在 JS 中，根据词法作用域的规则，内部函数总是可以访问其外部函数中声明的变量/函数
 
+当通过调用一个外部函数返回一个内部函数后，即使该外部函数已经执行结束了，但是内部函数引用外部函数的变量依然保存在内存中
+
+**本质是 一个绑定了外部「执行环境」的函数**
+
+栗子：
+```javascript
+function foo() {
+    var myName = "极客时间"
+    let test1 = 1
+    const test2 = 2
+    var innerBar = {
+        getName:function(){
+            console.log(test1)
+            return myName
+        },
+        setName:function(newName){
+            myName = newName
+        }
+    }
+    return innerBar
+}
+var bar = foo()
+bar.setName("极客邦")
+bar.getName()
+console.log(bar.getName())
+```
+![](https://static001.geekbang.org/resource/image/50/46/50e4ba60fc7e420e83b35b95e379b246.png)
+
+
+#### 闭包是怎么回收的？
+- 引用「执行环境」的函数处于函数作用域或者块级作用域内，在函数销毁后，JS 引擎便会在下一次执行垃圾回收时回收这块内存
+- 引用「执行环境」的函数处于全局作用域内，那么这个函数将会一直存在直至页面关闭。如果之后这个函数不再使用，就会一直占用内存造成内存泄露
+
+所以在使用闭包的时候，尽量注意一个原则：
+
+**如果该闭包函数会一直使用，那么它可以作为全局变量存在。但如果使用频率不高，而且占用内存又比较大的话，就尽量让它成为一个局部变量**
+
+### this
 
 ## 异步&单线程
 
