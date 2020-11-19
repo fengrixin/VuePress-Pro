@@ -3,10 +3,12 @@ title: ES6+
 ---
 
 ## 变量类型
+![](https://static001.geekbang.org/resource/image/85/15/85b87602eac65356c9171bbd023f5715.png)
+
 | | | | | | | | |
 | --- |:---:|:---:|:---:|:---:|:---:|:---:| ---:| 
 | 值类型 | String | Number | Boolean | Undefined | Null | Symbol | BigInt |
-| 引用类型 | Array | Object | Function | Map | Set | | | |
+| 引用类型 | Object | Function | Array | Map | Set | | | |
 
 ## [Array](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array)
 
@@ -219,8 +221,12 @@ Object.is(NaN, NaN)  // true
 
 ## [Function](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function)
 
-### bind
-### apply & call
+### bind、apply & call
+- 相同点：给函数传递一个指定的 [this](/learn/js/point.html#this)，皆以第一个参数传递
+- 不同点： 
+    - bind 和 call 接受的是参数列表，apply 接受的是参数数组
+    - apply 和 call 的返回值是函数执行后的返回值（没有则返回 undefined） <br/>
+      bind 的返回值是原函数的拷贝，并拥有指定的 this 和传递的参数。如果返回的函数重新 new，this 会被忽略掉。
 
 ### 参数
 > 函数的参数是函数内部的局部变量，参数是值传递的

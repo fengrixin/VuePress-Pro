@@ -274,12 +274,31 @@ obj.printName() // rixin
 - 函数执行上下文中的 this
     - 普通函数中，this 指向依然是 window。「严格模式下」，this 值是 undefined，这样避免了一些因为打破数据边界造成的误操作
     - 函数作为对象的方法调用时，函数中 this 指向的是该对象
-    - 通过 call apply bind 方法可以设置 this 的指向
+    - 通过 [call apply bind](/learn/js/es6.html#bind、apply-call) 方法可以设置 this 的指向
     - new 出来的函数，this 指向的是该函数（本质是也是 JS 引擎内部通过 call 方法重新设置了 this 指向）
     - 箭头函数没有执行上下文，所以 this 是外层的 this
 
-#### this 指向问题
-谁调用的就指向谁
+#### [this 的设计缺陷以及应对方案](https://time.geekbang.org/column/article/128427)
+- 嵌套函数中的 this 不会从外层函数中继承
+- 普通函数中的 this 默认指向全局对象 window
+
+#### this 指向问题之终极奥义
+**谁调用的就指向谁** （嵌套函数中的 this 除外）
+```javascript
+let obj = {
+    name: 'rixin',
+    printName: function() {
+       console.log(this) // this1
+        function shiftThis() {
+           console.log(this) //this2
+        }
+        shiftThis()
+    }
+}
+obj.printName() // this1 指向的是 obj，this2 指向的是 window（严格模式：undefined）
+let obj2 = obj.printName
+obj2() // this1 指向的是 window，this2 指向的是 window（严格模式：undefined）
+```
 
 ## 异步&单线程
 
@@ -330,7 +349,7 @@ function cloneDeep(obj) {
 ```
 
 ### 最优方案
-> 当然，这只是不使用第三方的最优方案，最优的当然是使用 Lodash.cloneDeep
+> ES6+ 的高阶写法，可以做到全类型拷贝。比 Lodash.cloneDeep 简洁
 ```js
 const isComplexDataType = obj => (typeof obj === 'object' || typeof obj === 'function') && (obj !== null)
 
@@ -524,3 +543,5 @@ function throttle(func, delay, type=true) {
   }
 }
 ```
+
+## 函数柯里化
