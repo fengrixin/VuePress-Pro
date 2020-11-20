@@ -221,6 +221,23 @@ Object.is(NaN, NaN)  // true
 
 ## [Function](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function)
 
+在函数内部，有两个特殊的对象：arguments 和 this
+- arguments：类数组，主要用途是用来保存函数参数。
+    > 它还有一个名叫 callee 的属性，该属性是一个指针，指向拥有这个 arguments 对象的函数。严格模式下会报错<br/>
+    > 一般在函数内部调用自身的时候使用它会更好。因为消除了耦合度，修改函数名时不需要进一步修改内部
+    ```javascript
+     function factorial(num) {
+          if(num <= 1) return 1;
+          return num * arguments.callee(num - 1)
+     }
+    ```
+- this：[点击传送](/learn/js/point.html#this)
+
+### 内部属性
+每个函数都包含两个属性：length 和 prototype（bind 返回的函数和箭头函数则没有 prototype）
+- length：返回函数希望接收的命名参数个数（默认值和可变参数不会统计）
+- prototype：对于引用类型而言，prototype 是保存它们所有实例方法和属性的真正所在。
+
 ### bind、apply & call
 - 相同点：给函数传递一个指定的 [this](/learn/js/point.html#this)，皆以第一个参数传递
 - 不同点： 
@@ -231,7 +248,7 @@ Object.is(NaN, NaN)  // true
 ### 参数
 > 函数的参数是函数内部的局部变量，参数是值传递的
 
-- 默认参数
+- 默认值参数
 ```javascript
 function fn(x, y=2, z) {
   console.log(x, y, z)

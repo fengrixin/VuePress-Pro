@@ -47,6 +47,27 @@ Object instanceof Object // true
 Function instanceof Object // true
 ```
 
+### Object.prototype.toString.call()
+在任何值上调用 Object **原生的** toString() 方法，都会返回一个 [object NativeConstructorName] 格式的字符串。
+
+因为每个类在都有一个 [[Class]] 内部属性，这个属性中就指定了上述字符串中的构造函数名。
+
+栗子：
+```javascript
+Object.prototype.toString.call(1) // [object Number]
+Object.prototype.toString.call('1') // [object String]
+Object.prototype.toString.call(true) // [object Boolean]
+Object.prototype.toString.call(BigInt(1)) // [object BigInt]
+Object.prototype.toString.call(Symbol()) // [object Symbol]
+Object.prototype.toString.call(null) // [object Null]
+Object.prototype.toString.call(undefined) // [object Undefined]
+Object.prototype.toString.call({}) // [object Object]
+Object.prototype.toString.call([]) // [object Array]
+Object.prototype.toString.call(function() {}) // [object Function]
+Object.prototype.toString.call(new Set()) // [object Set]
+Object.prototype.toString.call(new Map()) // [object Map]
+```
+
 ### 类型转换
 经常涉及到类型转换的场景有以下几种：
 - 字符串拼接
@@ -278,9 +299,13 @@ obj.printName() // rixin
     - new 出来的函数，this 指向的是该函数（本质是也是 JS 引擎内部通过 call 方法重新设置了 this 指向）
     - 箭头函数没有执行上下文，所以 this 是外层的 this
 
+**每个函数在被调用时都会自动取得两个特殊变量：「this」和「arguments」。函数在搜索这两个变量时，只会在当前执行上下文内搜索。**
+
+因此永远不可能访问到外部函数中的这两个变量，也就出现了嵌套函数中 this 不会从外层函数继承这样的反直觉设计缺陷了。
+
 #### [this 的设计缺陷以及应对方案](https://time.geekbang.org/column/article/128427)
 - 嵌套函数中的 this 不会从外层函数中继承
-- 普通函数中的 this 默认指向全局对象 window
+- 普通函数中的 this 默认指向全局对象 window（严格模式下为 undefined）
 
 #### this 指向问题之终极奥义
 **谁调用的就指向谁** （嵌套函数中的 this 除外）
@@ -545,3 +570,14 @@ function throttle(func, delay, type=true) {
 ```
 
 ## 函数柯里化
+
+```javascript
+function curry(fn) {
+  let args = Array.prototype.slice.call(arguments, 1) // 获取传入除了 fn 外的其他参数
+  return function() {
+    let innerArgs = Array.prototype.slice.call(arguments) 
+    let finalArgs = args.concat(innerArgs)
+    return fn.apply(null, finalArgs)
+  }
+}
+```
