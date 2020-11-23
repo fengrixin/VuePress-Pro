@@ -570,14 +570,32 @@ function throttle(func, delay, type=true) {
 ```
 
 ## 函数柯里化
+把接受多个参数的函数变换成接受一个单一参数（最初函数的第一个参数）的函数，并且返回接受余下的参数而且返回结果的新函数的技术。
+
+简单来说就是：使用一个闭包返回一个函数。
+
+- 提前绑定好某些参数的值，提高复用性
+- 延迟计算
 
 ```javascript
 function curry(fn) {
   let args = Array.prototype.slice.call(arguments, 1) // 获取传入除了 fn 外的其他参数
   return function() {
-    let innerArgs = Array.prototype.slice.call(arguments) 
+    let innerArgs = Array.prototype.slice.call(arguments)
     let finalArgs = args.concat(innerArgs)
     return fn.apply(null, finalArgs)
   }
 }
+// 栗子 1：
+let props = [{name: 'rixin', age: 24}, {name: 'lp', age: 25}]
+let getPropsName = curry(function(key, obj){return obj[key]})
+let names = props.map(getPropsName('name')) // ['rixin', 'lp']
+let ages = props.map(getPropsName('age')) // [24, 25]
+
+// 栗子 2：
+function handler(name){
+    console.log('name: ', name)
+}
+setTimeout(handler('rixin'), 1000) // 会立即执行
+setTimeout(curry(handler,'rixin'), 1000) // 1s 后执行
 ```
