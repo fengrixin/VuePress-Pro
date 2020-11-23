@@ -47,7 +47,9 @@ Object instanceof Object // true
 Function instanceof Object // true
 ```
 
-### Object.prototype.toString.call()
+### 绝对正确的判断
+**Object.prototype.toString.call(value)**
+
 在任何值上调用 Object **原生的** toString() 方法，都会返回一个 [object NativeConstructorName] 格式的字符串。
 
 因为每个类在都有一个 [[Class]] 内部属性，这个属性中就指定了上述字符串中的构造函数名。
@@ -67,6 +69,7 @@ Object.prototype.toString.call(function() {}) // [object Function]
 Object.prototype.toString.call(new Set()) // [object Set]
 Object.prototype.toString.call(new Map()) // [object Map]
 ```
+> 注意：toString 方法是可以被覆盖修改的，修改后则失去判断效果
 
 ### 类型转换
 经常涉及到类型转换的场景有以下几种：
