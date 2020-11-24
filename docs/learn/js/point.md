@@ -78,12 +78,19 @@ Object.prototype.toString.call(new Map()) // [object Map]
 - 逻辑运算
 
 ## 原型&原型链
+### 原型
+JavaScript 的原型系统：
+- 如果所有对象都有私有字段 [[prototype]]，就是对象的原型
+- 读一个属性，如果对象本身没有，则会继续访问对象的原型，直到原型为空或者找到为止
 
-### constructor
+ES6 之后，JavaScript 提供了一系列内置函数来方便直接的访问操纵原型：
+- Object.create ：根据指定的原型创建新对象，原型可以是 null
+- Object.getPrototypeOf ：获得一个对象的原型
+- Object.setPrototypeOf ：设置一个对象的原型
 
-### 属性
+### 原型链
+![](https://pic.downk.cc/item/5fbc7894b18d627113228bca.jpg)
 
-### 方法
 
 ## 闭包与作用域
 JavaScript 采用的是静态作用域，也叫词法作用域。也就是说函数在定义的时候函数的作用域就决定了
@@ -602,3 +609,12 @@ function handler(name){
 setTimeout(handler('rixin'), 1000) // 会立即执行
 setTimeout(curry(handler,'rixin'), 1000) // 1s 后执行
 ```
+
+## 跨域
+跨域问题主要是因为**浏览器的同源策略**
+> 同源策略限制了从同一个源加载的文档或脚本如何与来自另一个源的资源进行交互，这是一个用于隔离潜在恶意文件的重要安全机制
+
+解决方案 [传送门](https://mp.weixin.qq.com/s/_1QYY-gwu8HFF2-8PVN0GQ) ：
+- JSONP
+- 空 iframe 加 from
+- CORS

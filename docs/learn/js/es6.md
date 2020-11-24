@@ -155,6 +155,8 @@ console.log('3'.padEnd(2, '0')) // 30
 
 ## [Object](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object)
 
+对象的原型 [传送门](/learn/js/point.html#原型-原型链)
+
 ### Object.defineProperty
 给对象新增/修改一个属性，并指定属性的配置
 ```javascript
