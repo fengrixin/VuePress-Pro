@@ -2,6 +2,12 @@
 title: ES6+
 ---
 
+> 参考来源：
+> [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript) 、
+> [《ES6 入门教程 - 阮一峰》](https://es6.ruanyifeng.com) 、 
+> [《重学前端》](https://time.geekbang.org/column/article/83302) 、
+> [《浏览器工作原理与实践》](https://time.geekbang.org/column/article/119046)
+
 ## 变量类型
 ![](https://static001.geekbang.org/resource/image/85/15/85b87602eac65356c9171bbd023f5715.png)
 
@@ -154,8 +160,13 @@ console.log('3'.padEnd(2, '0')) // 30
 ```
 
 ## [Object](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object)
+在 JS 运行时，原生对象的描述方式非常简单，我们只需要关心原型和属性两个部分
+- 属性：数据属性、访问器属性
+    > JS 用属性来统一抽象对象状态和行为。一般来说，数据属性用于描述状态，访问器属性则用于描述行为。但数据属性中如果存储函数，也可以用于描述行为。
+    - 数据属性：[[value]]、writable、enumerable、configurable
+    - 访问器属性：get、set、enumerable、configurable
+- 原型： [传送门](/learn/js/point.html#原型-原型链)
 
-对象的原型 [传送门](/learn/js/point.html#原型-原型链)
 
 ### Object.defineProperty
 给对象新增/修改一个属性，并指定属性的配置
