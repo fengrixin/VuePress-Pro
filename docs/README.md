@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: https://tvax1.sinaimg.cn/large/6f8a2832gy1g8vfxs2fh8j21hc0u0n2w.jpg
+heroImage: https://tva3.sinaimg.cn/large/6f8a2832ly1gjqi7j2jd7j21hc0u07wi.jpg
 actionText: 了解一下 →
 actionLink: /learn/algorithm/
 features:
