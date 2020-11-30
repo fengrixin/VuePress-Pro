@@ -77,8 +77,19 @@ Object.prototype.toString.call(new Map()) // [object Map]
 - ==
 - 逻辑运算
 
+![](https://static001.geekbang.org/resource/image/71/20/71bafbd2404dc3ffa5ccf5d0ba077720.jpg)
+所谓「装箱转换」，正是把基本类型转换为对应的对象（基本类型在对象中都有对应的类，Number、String、Boolean、Symbol、BigInt），它是类型转换中一种相当重要的种类
+
 ## 原型&原型链
+> 参考文章 <br/>
+> [[JS必知必会]原型链这么看好像并不难](https://mp.weixin.qq.com/s/SgPESO46s0_vt6kSLaWO0Q) <br/>
+> [吊打 JavaScript 之从原型到原型链](https://mp.weixin.qq.com/s/QQySwGWhjD0Hd72_U0nrRg) <br/>
+> [简单粗暴地理解 JS 原型链](https://mp.weixin.qq.com/s/JzgalzgnhVjg0119xEf4BQ) <br/>
+> [图解 JavaScript 原型与原型链](https://mp.weixin.qq.com/s/St78Y38j3XI2_Zv57bNZ0Q) <br/>
+
 ### 原型
+JavaScript 是基于「原型」的编程语言，它们利用原型来描述对象。*与之对应的是另一种基于类的编程语言（比如 Java）*
+
 JavaScript 的原型系统：
 - 如果所有对象都有私有字段 [[prototype]]，就是对象的原型
 - 读一个属性，如果对象本身没有，则会继续访问对象的原型，直到原型为空或者找到为止
