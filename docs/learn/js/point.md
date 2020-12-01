@@ -82,10 +82,28 @@ Object.prototype.toString.call(new Map()) // [object Map]
 
 ## 原型&原型链
 > 参考文章 <br/>
-> [[JS必知必会]原型链这么看好像并不难](https://mp.weixin.qq.com/s/SgPESO46s0_vt6kSLaWO0Q) <br/>
-> [吊打 JavaScript 之从原型到原型链](https://mp.weixin.qq.com/s/QQySwGWhjD0Hd72_U0nrRg) <br/>
-> [简单粗暴地理解 JS 原型链](https://mp.weixin.qq.com/s/JzgalzgnhVjg0119xEf4BQ) <br/>
 > [图解 JavaScript 原型与原型链](https://mp.weixin.qq.com/s/St78Y38j3XI2_Zv57bNZ0Q) <br/>
+> [[JS必知必会]原型链这么看好像并不难](https://mp.weixin.qq.com/s/SgPESO46s0_vt6kSLaWO0Q) <br/>
+> [简单粗暴地理解 JS 原型链](https://mp.weixin.qq.com/s/JzgalzgnhVjg0119xEf4BQ) <br/>
+
+### 对象
+- 所有**引用类型**（函数、数组、对象...）都拥有 **\_\_proto\_\_** 属性（隐式原型）
+- 所有**函数**都有用 **prototype** 属性（显式原型）*，匿名函数除外*
+- 拥有 **prototype** 属性的对象称为「原型对象」，原型对象在定义时就被创建
+
+**prototype**： 相当于一个指针，指向当前函数的「原型对象」
+
+**\_\_proto\_\_**： 任何引用类型都有，原型对象也是对象，当然也有。也是一个指针，它指向的是**产生当前对象的函数的原型对象**
+```javascript
+function Fn() {}
+let fn = new Fn()
+fn.__proto__ === Fn.prototype  // true
+```
+
+> \_\_proto\_\_ 一开始并非是 ECMAScript 标准中规定的属性，是浏览器实现的一个功能。在 ES6 后被正式纳入标准中，用于确保 Web 浏览器的兼容性 <br/>
+> 不过 ES6 后更推荐使用 Object.getPrototypeOf/Reflect.getPrototypeOf 和 Object.setPrototypeOf/Reflect.setPrototypeOf <br/>
+> 设置对象的 [[prototype]] 是一个缓慢的操作，比较耗费性能，应避免过多使用
+
 
 ### 原型
 JavaScript 是基于「原型」的编程语言，它们利用原型来描述对象。*与之对应的是另一种基于类的编程语言（比如 Java）*
@@ -104,6 +122,19 @@ ES6 之后，JavaScript 提供了一系列内置函数来方便直接的访问�
 
 ![](https://pic.downk.cc/item/5fbc7894b18d627113228bca.jpg)
 
+### 继承
+
+原型继承
+```javascript
+function Father() {}
+function Son() {}
+Son.prototype = Object.create(Father.prototype, {
+    constructor: {
+        value: Son
+    }
+})
+Son.prototype.__proto__ === Father.prototype // true
+```
 
 ## 闭包与作用域
 JavaScript 采用的是静态作用域，也叫词法作用域。也就是说函数在定义的时候函数的作用域就决定了
