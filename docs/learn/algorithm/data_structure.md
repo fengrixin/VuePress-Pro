@@ -86,7 +86,7 @@ title: 数据结构
 >
 > 二叉树还有两种特殊形式，一个是「满二叉树」，一个是「完全二叉树」
 >
-> 存储方式可以说数组或者链表
+> 存储方式可以是数组或者链表
 
 ![二叉树](https://static001.geekbang.org/resource/image/09/2b/09c2972d56eb0cf67e727deda0e9412b.jpg)
 

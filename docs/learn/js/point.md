@@ -88,7 +88,7 @@ Object.prototype.toString.call(new Map()) // [object Map]
 
 ### 对象
 - 所有**引用类型**（函数、数组、对象...）都拥有 **\_\_proto\_\_** 属性（隐式原型）
-- 所有**函数**都有用 **prototype** 属性（显式原型）*，匿名函数除外*
+- 所有**函数**都有用 **prototype** 属性（显式原型）*，bind 返回的函数和匿名函数除外*
 - 拥有 **prototype** 属性的对象称为「原型对象」，原型对象在定义时就被创建
 
 **prototype**： 相当于一个指针，指向当前函数的「原型对象」
@@ -121,6 +121,11 @@ ES6 之后，JavaScript 提供了一系列内置函数来方便直接的访问�
 当我们访问属性时，如果当前对象没有，则会沿着原型找原型对象是否有此名称的属性，而原型对象还可能有原型，因此，会有「原型链」这一说法。
 
 ![](https://pic.downk.cc/item/5fbc7894b18d627113228bca.jpg)
+
+注意：
+```javascript
+Function.__proto__ === Function.prototype  // true
+```
 
 ### 继承
 
@@ -381,6 +386,87 @@ obj2() // this1 指向的是 window，this2 指向的是 window（严格模式�
 
 ## 异步&单线程
 
+### 进程、线程
+- 进程
+
+**一个进程就是一个程序的运行实例**，详细的解释就是，启动一个程序的时候，操作系统会为该程序创建一块内存，用来存放代码、运行中的数据和一个执行任务的「主线程」，我们把这样的一个运行环境叫**进程**
+
+进程间相互独立，互不干扰
+
+- 线程
+
+线程是计算机最小的调度和运行单位。线程是不能单独存在的，它是由进程来启动和管理的。
+
+线程是依附于进程的，而进程中使用多线程并行处理能提升运算效率
+
+线程间可以共享进程的数据
+
+- 特点
+    - 进程中的任意一个线程执行出错，都会导致整个进程崩溃
+    - 线程之间共享进程中的数据
+    - 当一个进程关闭之后，操作系统会回收进程所占用的内存
+    - 进程之间的内容相互隔离
+
+### 宏任务、微任务
+宏任务就是传给 JavaScript 引擎的任务 <br/>
+微任务就是在 JavaScript 引擎内部的任务，在 JavaScript 中，只有 Promise 才会产生微任务
+
+> 一个 JavaScript 引擎会常驻于内存中，它等待着宿主（浏览器或 Node 环境）把 JavaScript 代码或者函数传递给它执行，也称为宏任务 <br/>
+> ES5 之后，JavaScript 引入了 Promise，这样，不需要宿主的安排，JavaScript 引擎本身也可以发起任务了，也称为微任务
+
+一个宏任务中，也会存在着微任务
+
+> [JavaScript执行（一）：Promise里的代码为什么比setTimeout先执行？](https://time.geekbang.org/column/article/82764)
+
+### 事件循环
+事件循环是宿主（浏览器或 Node 环境）维护一个队列，核心的逻辑可以分为以下三步：
+
+**获取一段 JavaScript 代码 -> 执行 -> 等待**
+
+> [消息队列和事件循环：页面是怎么“活”起来的？](https://time.geekbang.org/column/article/132931)
+
+### 异步经典题目
+```javascript
+console.log('script start')
+async function async1() {
+  console.log('async1 start')
+  await async2()
+  console.log('async1 end')
+}
+async function async2() {
+  console.log('async2')
+}
+async1()
+setTimeout(()=> {
+  console.log('setTimeout')
+}, 0)
+new Promise(resolve => {
+  console.log('new Promise')
+  resolve()
+}).then(()=>{
+  console.log('promise1')
+}).then(()=>{
+  console.log('promise2')
+})
+console.log('script end')
+```
+执行结果：
+```
+script start  // 第一个宏任务 开始
+async1 start
+async2
+new Promise
+script end  // 宏任务结束
+async1 end  // 执行宏任务中的微任务
+promise1
+promise2  // 微任务结束
+
+setTimeout // 第二个宏任务 开始
+```
+
+注意：
+> async 函数中，await 之后的代码是一个微任务 <br/>
+> Chrome 73 版本乃至之前，因为 await 之后的代码被多个 Promise 包裹，所以会被放置到微任务队列的末尾，73 之后修复了这个问题
 
 ## 深拷贝
 测试用例
@@ -662,3 +748,23 @@ setTimeout(curry(handler,'rixin'), 1000) // 1s 后执行
 - JSONP
 - 空 iframe 加 from
 - CORS
+
+## 网站优化
+
+### 页面级别
+- 资源合并
+- 减少请求数
+- 图片懒加载
+- 图片合并压缩
+- 脚本后置
+- CSS 前置
+- inline 脚本 defer
+- 域名配置时防止发生跳转
+- 避免重复打包模块代码
+
+### 代码级别
+- 减少 DOM 操作
+- CSS 减少 Reflow
+- 避免使用 eval 和 Function
+- 减少作用域链查找
+- CSS 选择符尽可能简单（浏览器对选择符是从右往左进行的）
