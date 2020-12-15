@@ -47,9 +47,8 @@ module.exports = {
                     {
                         text: '电梯',
                         items: [
-                            {text: 'TypeScript', link: '/learn/tools/typescript'},
-                            {text: 'Webpack', link: '/learn/tools/webpack'},
-                            {text: 'Gulp', link: '/learn/tools/gulp'},
+                            {text: '工具链', link: '/learn/tools/webpack'},
+                            {text: '发布系统', link: '/learn/tools/publish'},
                         ]
                     }
                 ]
@@ -69,7 +68,7 @@ module.exports = {
                     {
                         text: '作品',
                         items: [
-                            {text: '微冷知识', link: 'http://app.mi.com/details?id=com.rixin.cold'}
+                            {text: '微冷知识', link: 'http://www.5you.com/apk/384161.html'}
                         ]
                     }
                 ]
@@ -94,7 +93,8 @@ module.exports = {
             '/learn/js/': [
                 '/learn/js/es6',
                 '/learn/js/point',
-                '/learn/js/tools',
+                // '/learn/js/tools',
+                '/learn/js/typescript',
             ],
             '/learn/css/': [
                 '/learn/css/',
@@ -112,9 +112,8 @@ module.exports = {
                 '/learn/vue/issue'
             ],
             '/learn/tools/': [
-                '/learn/tools/typescript',
                 '/learn/tools/webpack',
-                '/learn/tools/gulp',
+                '/learn/tools/publish'
             ],
             '/watch/': [
                 '/watch/repository',
