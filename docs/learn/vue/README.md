@@ -14,6 +14,10 @@ title: Vue
 > - [Nuxt项目从开始到部署](https://segmentfault.com/a/1190000020452519?utm_source=tag-newest)
 > - [nuxt.js部署vue应用到服务端过程](https://segmentfault.com/a/1190000014450967)
 
+> 如果 Nginx 是运行在 docker 集群中的话，Nuxt 需要设置 hostname 为 0.0.0.0
+>
+> [如何更改应用的主机和端口配置？](https://www.nuxtjs.cn/faq/host-port)
+
 1. 客户端 build 后，将 .nuxt  static nuxt.config.js package.json 上传至服务端指定目录下
     ```shell script
     npm install --registry=https://registry.npm.taobao.org // 也可以不使用淘宝镜像
@@ -29,10 +33,7 @@ title: Vue
        server_name xxx.com;  // 域名
        proxy_pass http://nuxt-server;  // 反向代理
     }
-    ```
-    > 注意：Nginx 必须处于服务器下，而不能处于服务器内的 docker 容器中。<br/>
-    > docker 容器相当于一个虚拟机，虚拟机内的 127.0.0.1 不是服务器中的 127.0.0.1，具体是什么不是很清楚，对服务端不是很了解
-                                                                                                                                                                                                                                          
+    ```                                                                                                                                                                       
     配置好后需要重新加载 Nginx
     ```shell script
     docker exec -it nginx bash // 进入docker容器
@@ -40,7 +41,6 @@ title: Vue
     nginx -s reload // 重新加载
     ```
       
-
 3. 使用 pm2 进程守护进行启动项目
    ```shell script
     pm2 start npm --name "nuxt-server" -- run start
