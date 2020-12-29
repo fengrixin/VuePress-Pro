@@ -8,13 +8,13 @@ title: Vue
 ### 创建项目
 查看 [官网](https://nuxtjs.org/docs/2.x/get-started/installation) 或者 [nuxt 中文网](https://www.nuxtjs.cn/guide/installation) 就可以了
 
-### 部署 
+### 首次部署 
 > 参考文章
 > - [next.js、nuxt.js等服务端渲染框架构建的项目部署到服务器，并用PM2守护程序](https://segmentfault.com/a/1190000012774650)
 > - [Nuxt项目从开始到部署](https://segmentfault.com/a/1190000020452519?utm_source=tag-newest)
 > - [nuxt.js部署vue应用到服务端过程](https://segmentfault.com/a/1190000014450967)
 
-> 如果 Nginx 是运行在 docker 集群中的话，Nuxt 需要设置 hostname 为 0.0.0.0
+> 如果 Nginx 是运行在 docker 集群中的话，Nuxt 需要设置 hostname 为 0.0.0.0（所有地址）
 >
 > [如何更改应用的主机和端口配置？](https://www.nuxtjs.cn/faq/host-port)
 
@@ -48,3 +48,19 @@ title: Vue
 
 4. 在浏览器中输入你的域名
 > 正常情况下，应该都可以正常访问的，如果出现 502 这些异常，就需要请后端帮忙解决下了。
+
+### 再次部署
+
+1. 上传文件
+2. 使用 pm2 重载进程
+    ```shell script
+    pm2 list  // 查看当前运行的服务 id
+    pm2 reload id // 重载
+    pm2 restart id // 或者重启
+    ```
+   或者重新启动
+   ```shell script
+    pm2 stop id // 停止 id 进程
+    pm2 delete id // 删除 id 进程
+    pm2 start npm --name "nuxt-server" -- run start // 启动项目
+    ```
