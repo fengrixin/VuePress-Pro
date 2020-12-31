@@ -109,7 +109,7 @@ module.exports = {
             ],
             '/learn/vue/': [
                 '/learn/vue/',
-                '/learn/vue/issue'
+                '/learn/vue/nuxt'
             ],
             '/learn/tools/': [
                 '/learn/tools/webpack',
