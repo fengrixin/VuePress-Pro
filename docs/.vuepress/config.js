@@ -47,7 +47,7 @@ module.exports = {
                     {
                         text: '电梯',
                         items: [
-                            {text: '工具链', link: '/learn/tools/webpack'},
+                            {text: '工具链', link: '/learn/tools/chain'},
                             {text: '发布系统', link: '/learn/tools/publish'},
                         ]
                     }
@@ -112,7 +112,7 @@ module.exports = {
                 '/learn/vue/nuxt'
             ],
             '/learn/tools/': [
-                '/learn/tools/webpack',
+                '/learn/tools/chain',
                 '/learn/tools/publish'
             ],
             '/watch/': [
