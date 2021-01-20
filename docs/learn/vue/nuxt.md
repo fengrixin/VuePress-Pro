@@ -67,11 +67,12 @@ title: Nuxt
 ## 问题集锦
 
 ### DOMException：Failed to execute 'appendChild' on 'Node'
-本地调试出现以下警告，并且在部署后报错（如图所示）
+本地调试出现以下警告
 ```text
 Parent: <div class="hot-view">...</div>
 Mismatching childNodes vs.VNodes: ...
 ```
+并且在部署后报错（如图所示）
 ![](https://pic.downk.cc/item/5fed68d83ffa7d37b30739d5.png)
 
 解决方案：在 Parent 所提示的元素上用 client-only 包裹住即可解决s
@@ -81,3 +82,20 @@ Mismatching childNodes vs.VNodes: ...
 </client-only>
 ```
 
+### The client-side rendered virtual DOM tree is not matching server-rendered content.
+本地调试出现以下警告（如图所示）
+![](https://pic.downk.cc/item/5ff7bec63ffa7d37b3bb60fe.png)
+
+这个错误还是挺难排查的，网上找了一圈，产生的原因有以下几个可能
+- 不遵循 HTML 规范的写法
+- 某个注释
+- JS 代码不规范
+- 我遇到的是：store 下的 actions 里使用了 || 
+
+报错都一样，解决问题千差万别。那么如何排除问题呢？
+
+很简单，首先，你得有个良好的代码版本管理习惯；
+
+然后，回退版本到刚出现错误的版本，跟未出现错误的版本对比，增加了什么，逐一排查
+
+就这么简单，且枯燥

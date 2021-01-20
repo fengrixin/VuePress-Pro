@@ -109,3 +109,44 @@ sort([2,1,3,4,5])
 ## 回溯算法
 
 ## 动态规划
+
+## 算法题
+
+### 数组
+- [两数之和](https://leetcode-cn.com/problems/two-sum)
+- [删除排序数组中的重复项](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array)
+- [合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array)
+
+- 已知如下数组，编写一个程序将数组扁平化去并除其中重复部分数据，最终得到一个升序且不重复的数组
+```javascript
+const arr = [ [1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14] ] ] ], 10]
+
+console.log(Array.from(new Set(arr.flat(Infinity))).sort((a,b) => a-b))
+```
+  
+  
+  
+- 请把两个数组 ['A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'D1', 'D2'] 和 ['A', 'B', 'C', 'D']，合并为 ['A1', 'A2', 'A', 'B1', 'B2', 'B', 'C1', 'C2', 'C', 'D1', 'D2', 'D']。
+```javascript
+function concatArr(arr1, arr2) {
+   let arr = [...arr1]
+   let currentIndex = 0
+   for (let i=0,len=arr2.length; i<len; i++){
+    let re = new RegExp(arr2[i])
+     while (currentIndex < arr.length){
+        if(!re.test(arr[++currentIndex])){
+            arr.splice(currentIndex, 0, arr2[i])
+            break
+        }
+     }
+   }
+   return arr
+}
+let arr1 = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'D1', 'D2']
+let arr2 = ['A', 'B', 'C', 'D']
+console.log(arr1, arr2, concatArr(arr1, arr2))
+```
+
+
+### 字符串
+- [反转字符串](https://leetcode-cn.com/problems/reverse-string)
