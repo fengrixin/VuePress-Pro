@@ -308,7 +308,14 @@ fn(1) // {x: 2}
 ```
 
 ## [Number](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Number)
+### 判断整型
+```javascript
+Number.isInteger(1) //true
+```
+
 ### Number 和 parseInt 的区别
+如无必要，一般选择 Number
+
 - Number 可格式化浮点数，parseInt 只能格式化成整数
 ```javascript
 Number('12.34') // 12.34
