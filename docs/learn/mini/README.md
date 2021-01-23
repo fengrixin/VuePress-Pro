@@ -6,7 +6,7 @@ title: 小程序
 - hover-class
 
 ## 代码片段
-- 更新小程序
+### 更新小程序
 ```javascript
 const upm = wx.getUpdateManager();
     if (upm) {
@@ -26,7 +26,20 @@ const upm = wx.getUpdateManager();
       })
     }
 ```
-
+### 图片转 base64
+```javascript
+wx.chooseImage({
+    success: (res)=>{
+        wx.getFileSystemManager().readFile({
+           filePath: res.tempFilePaths[0],
+           encoding: 'base64',
+           success: (res) => {
+             console.log('data:image/png;base64,' + res.data)
+           }
+        })
+    }
+})
+```
 
 ## UI 框架
 - [Wux weapp](https://wux-weapp.github.io/wux-weapp-docs) 组件库
