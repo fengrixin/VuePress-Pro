@@ -99,3 +99,15 @@ Mismatching childNodes vs.VNodes: ...
 然后，回退版本到刚出现错误的版本，跟未出现错误的版本对比，增加了什么，逐一排查
 
 就这么简单，且枯燥
+
+### Error: Request failed with status code 404
+![](https://img.imgdb.cn/item/601e519a3ffa7d37b365814a.png)
+Nuxt 部署后，网站打开 node 服务就一直报这个错误，页面交互访问请求都毫无影响
+
+不过这个会大量占用 CPU 资源，输出的日志不到几天就会几十个 G，非常消耗服务器资源
+
+那么，究竟是什么原因导致的呢？通过穷举法不断排查，终于找到了（可累死我了）
+
+原因是：在 layouts/default.vue 中的组件，如果在 created 生命周期内发起请求，就会报这个错误
+
+解决方案：**把请求放到 mounted 中即可解决**
