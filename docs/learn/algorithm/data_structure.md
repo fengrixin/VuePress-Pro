@@ -42,7 +42,7 @@ title: 数据结构
 
 [如何实现浏览器的前进后退功能？][栈]
 
-![栈](http://ww1.sinaimg.cn/bmiddle/6af89bc8gw1f8ssby529lg20ak05wqbx.gif)
+![栈](https://img.imgdb.cn/item/601035f13ffa7d37b3b612ce.gif)
 
 栈的基本操作是「入栈」和「出栈」。因为入栈和出栈都只会影响到最后一个元素，所以入栈和出栈的时间复杂度都是 O(1)
 
