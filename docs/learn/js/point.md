@@ -38,6 +38,7 @@ typeof new Function() // 'function'
 
 ### instanceof
 右边的 prototype 在左边变量的原型链上
+即：对象的 __proto__ 与 函数的 prototype 在同一条原型链上
 ```javascript
 let s = new String()
 s instanceof String  // true
