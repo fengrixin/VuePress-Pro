@@ -235,3 +235,41 @@ title: HTML5
     - CSS 改动
     
 - 布局 Layout
+
+### 运行机制
+- 宏任务：setTimeout、setInterval、DOM 事件
+- 微任务：Promise
+    
+### 页面性能
+提升页面性能的方法有哪些？
+- 资源压缩合并，减少 HTTP 请求
+- 非核心代码异步加载。
+
+    异步加载的方式？
+    - 动态脚本加载（也就是在 js 中动态添加 script 标签）
+    - defer
+    - async
+    
+    异步加载的区别？ [传送门](/learn/html/#defer-和-async-的区别)
+    
+- 利用浏览器缓存。
+
+    缓存的分类？
+    - 强缓存
+        ```
+        Expires Expires:Thu,21 Jan 2020:17:35:09 GMT
+        Cache-Control Cache-Control:max-age=3600
+        ```
+    - 协商缓存
+        ```
+        Last-Modified If-Modified-Since Last-Modified:Thu,21 Jan 2020:17:35:09 GMT
+        Etag  If-None-Match
+        ```
+    缓存的原理？
+    
+- 使用 CDN
+- 预解析 DNS
+ ```html
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//host_name_to_prefetch.com">
+ ```
