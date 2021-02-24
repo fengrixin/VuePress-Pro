@@ -273,3 +273,20 @@ title: HTML5
 <meta http-equiv="x-dns-prefetch-control" content="on">
 <link rel="dns-prefetch" href="//host_name_to_prefetch.com">
  ```
+
+### 错误监控
+- 前端错误的分类
+    - 即时运行错误，也就是代码错误
+    - 资源加载错误
+- 错误的捕获方式
+    - 即时运行错误：1. try...catch  2. window.onerror
+    - 资源加载错误：1. object.onerror  2. performance.getEntries()  3. Error 事件捕获
+    - 延伸：跨域的 js 运行错误可以捕获吗？错误提示什么？应该怎么处理？
+        - 在 script 标签增加 crossorigin 属性
+        - 设置 js 资源响应头 Access-Control-Allow-Origin:*
+- 上报错误的基本原理
+    - 采用 Ajax 通信的方式上报
+    - **利用 Image 对象上报**
+        ```javascript
+        (new Image()).src = 'http://baidu.com/tesjk?r=task'
+        ```
