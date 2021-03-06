@@ -94,7 +94,7 @@ Array.from('rixin') // ['r','i','x','i','n']
 Array.from({length:5}, ()=>0) // [0,0,0,0,0]
 
 // 创建一个长度为 5 且初始值为 1-5 的数组
-Array.from(Array(5).fill(0), (v,k)=>k+1) // [1,2,3,4,5]
+Array.from(Array(5).fill(0), (v,i)=>i+1) // [1,2,3,4,5]
 ```
 
 - Array.of
@@ -259,7 +259,7 @@ Object.is(NaN, NaN)  // true
       bind 的返回值是原函数的拷贝，并拥有指定的 this 和传递的参数。如果返回的函数重新 new，this 会被忽略掉。
 
 ### 参数
-> 函数的参数是函数内部的局部变量，参数是值传递的
+> 函数的参数是函数内部的局部变量
 
 - 默认值参数
 ```javascript
@@ -303,7 +303,7 @@ fn(1) // 2
 ```
 - 如果返回值是对象，需要用括号包起来
 ```javascript
-const fn = (x) => ({x: x+1})
+const fn = x => ({x: x+1})
 fn(1) // {x: 2}
 ```
 
@@ -382,8 +382,13 @@ map.delete('key')
 ## [Symbol](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
 
 ## [Promise](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise)
-
 [promise A+](https://promisesaplus.com)
+
+### all([])
+接受多个 Promise，当所有 Promise 都 resolve 后才 then，当任意一个 Promise reject 时都会立即 catch
+
+### race([])
+接受多个 Promise，当任意一个 Promise resolve/reject 时都会立即 then/catch
 
 ## [Proxy](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
 
