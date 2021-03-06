@@ -730,11 +730,9 @@ function throttle(func, delay, type=true) {
 
 ```javascript
 function curry(fn) {
-  let args = Array.prototype.slice.call(arguments, 1) // 获取传入除了 fn 外的其他参数
-  return function() {
-    let innerArgs = Array.prototype.slice.call(arguments)
-    let finalArgs = args.concat(innerArgs)
-    return fn.apply(null, finalArgs)
+  return function currify() {
+    let args = Array.prototype.slice.call(arguments)
+    return args.length >= fn.length ? fn.apply(null, args) : currify.bind(null, ...args)
   }
 }
 // 栗子 1：
