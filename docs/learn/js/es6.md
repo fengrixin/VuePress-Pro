@@ -394,6 +394,25 @@ map.delete('key')
 
 ## [Reflect](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect)
 
+### ownKeys
+Reflect.ownKeys(target) return Array
+
+返回目标对象属性组成的数组，无论对象的属性是否可枚举
+```javascript
+let obj = {a:1, b:2}
+Object.defineProperty(obj, 'b', {enumerable: false})
+
+Object.keys(obj) // a
+Reflect.ownKeys(obj) // a b
+```
+
+### has
+Reflect.has(target, propertyKey) return Boolean
+
+返回目标对象是否存在此属性
+[同 in 操作符一致](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in)
+
+
 ## [Generator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Generator)
 
 ## [Iterator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Iterator)

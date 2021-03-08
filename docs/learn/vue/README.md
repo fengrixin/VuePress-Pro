@@ -61,3 +61,68 @@ if(opts.watch && opts.watch !== nativeWatch){
 // Firefox has a "watch" function onObject.prototype...
 export const nativeWatch = ({}).watch
 ```
+
+## 性能相关
+
+### 异步加载组件
+使用异步加载组件的方式，可以做到按需加载，在一些复杂的场景中，可以缩短渲染时间，提升用户体验
+- 页面
+- 子组件
+```javascript
+asyncDemo: ()=> import('./asyncDemo')
+```
+
+
+## 面试题
+
+### v-show 和 v-if 的区别
+- v-show 无论条件是否符合，节点都会创建，适用于经常切换显示的场景，例如 tab 切换
+- v-if 只有条件符合，才会创建节点，适用一次性判断的场景，例如列表中的互斥项
+
+### 为何 v-for 中要用 key
+
+- key 尽量不要使用 random 或 index
+- v-for 不要和 v-if 一起使用（v-for 优先级比 v-if 高）
+
+### 描述 Vue 组件生命周期（有父子组件的情况）
+
+### Vue 组件如何通讯
+#### 父子组件间
+- props 和 $emit
+
+#### 父子/兄弟/不相关组件间
+- Vuex
+- Vue 本身就具备自定义事件的能力
+    ```javascript
+    // event.js
+    import Vue from 'vue'
+    export default new Vue()
+  
+    // xxx1.vue
+    import event from './event.js'
+    event.$emit('onChange', 'value') // 触发自定义事件
+  
+    // xxx2.vue
+    import event from './event.js'
+    mounted(){
+      event.$on('onChange', this.changeValueHandler) // 监听自定义事件
+    }
+    changeValueHandler(value){
+      console.log(value) // value
+    }
+    beforDestroy(){
+      event.$off('onChange', this.changeValueHandler) // 解绑事件，以免内存泄漏
+    }
+    ```
+- EventBus
+
+### 描述组件渲染和更新的过程
+
+### 双向数据绑定 v-model 的实现原理
+
+- 修饰符：
+    - v-model.trim 去除前后空格
+    - v-model.lazy 防抖
+    - v-model.number 转换为数字
+
+### 基于 Vue 设计一个购物车（组件结构，Vuex state 数据结构）
