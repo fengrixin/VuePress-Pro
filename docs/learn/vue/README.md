@@ -2,10 +2,32 @@
 title: Vue
 ---
 
+## MVVM 数据驱动视图
+不再关注如何去操作 DOM，而更专注于数据和业务逻辑
+![](https://img.imgdb.cn/item/6045b714cef1ec5e6f4e1dbb.png)
+
+## 响应式
+
+### Object.defineProperty
+缺点：
+- 对象每个属性都劫持监听
+- 数组需在原型链上复写方法，拦截监听
+    ```javascript
+    let arrProto = Object.create(Array.prototype)
+    arrProto.push = function() {
+      // 触发视图更新后再调用原型链上的 Array 的 push 方法
+      updateView()
+      Array.prototype.push.call(this, ...arguments)
+    }
+    ```
+
+### Proxy
+- 优点：代理对象，对象的增删改都可监听
+- 缺点：兼容性不好，且无法 Polyfill
+
 ## 生命周期相关
 
 ### props methods data computed watch 的初始化顺序
-
 ::: tip 总结
 在 beforeCreate 和 created 之间进行初始化，它们的顺序为：<br/>
 props -> methods -> data -> computed -> watch
@@ -126,3 +148,8 @@ asyncDemo: ()=> import('./asyncDemo')
     - v-model.number 转换为数字
 
 ### 基于 Vue 设计一个购物车（组件结构，Vuex state 数据结构）
+
+### diff 算法的时间复杂度是如何优化到 O(n) 的？
+- 只比较同一层级，不跨级比较
+- tag 不相同，则直接删掉重建，不再深度比较
+- tag 和 key，两者都相同，则认为是相同节点，不再深度比较
