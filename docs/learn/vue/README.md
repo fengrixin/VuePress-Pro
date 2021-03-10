@@ -101,7 +101,6 @@ export const nativeWatch = ({}).watch
 asyncDemo: ()=> import('./asyncDemo')
 ```
 
-
 ## 面试题
 
 ### v-show 和 v-if 的区别
@@ -114,6 +113,35 @@ asyncDemo: ()=> import('./asyncDemo')
 - diff 算法中会通过 tag 和 key 来判断 vnode 节点是否是同一个
 - 减少渲染次数，提升渲染性能
 - v-for 不要和 v-if 一起使用（v-for 优先级比 v-if 高）
+
+### computed 和 watch 的区别
+- computed 会把计算结果缓存起来，相关的 data 数据不变则不会重新计算，提高性能
+- watch 一般用来监听数据的变化
+- computed 会先于 watch 进行初始化
+
+### 为何组件 data 必须是一个函数
+组件编译后实际上是一个 class，组件的使用相当于实例化
+
+如果 data 是一个对象，那么其中一个实例对象对 data 修改，都会影响到其他实例对象
+
+data 是函数的话就可以保证每个实例化对象都是独立的，不会相互影响
+
+### 多个组件有相同的逻辑，如何抽离？
+使用 mixins 混入，mixins 的缺点是命名不能相同，否则会冲突，项目大的时候不易排查问题
+
+### 何时使用异步组件？
+- 加载复杂或者大组件时
+- 路由异步加载
+
+### 何时需要使用 keep-alive？
+缓存组件，不需要重复渲染
+- 多个静态 tab 页的切换
+- 优化性能
+
+### 何时需要使用 beforeDestroy
+- 解绑自定义事件
+- 清除定时器
+- 解绑自定义的 DOM 事件，如 window scroll 等
 
 ### template 是什么
 相当于一种模板语法，不是单纯的 html，它还有着指令、表达式，循环判断这些能力
@@ -131,6 +159,7 @@ Vue 会把 template 编译成一个 render 函数，执行这个函数后会生�
 - 修改 data，触发 setter（此前在 getter 中已经被监听）
 - 重新执行 render 函数，生成 newVnode
 - patch(vnode, newVnode) 通过 diff 对比拿到需要更新的节点，渲染到页面上
+
 ![](https://img.imgdb.cn/item/60478eb65aedab222ccad427.png)
 
 ### 描述 Vue 组件生命周期（有父子组件的情况）
@@ -179,11 +208,23 @@ Vue 会把 template 编译成一个 render 函数，执行这个函数后会生�
 
 ### 双向数据绑定 v-model 的实现原理
 就输入框而言，在编译 template 的时候，会给输入框绑定一个 input 事件，实时更新 value，从而达到数据的双向绑定
+- input 元素的 value = this.name
+- 绑定 input 事件 this.name = $event.target.value
+- data 更新触发 re-render
 
 - 修饰符：
     - v-model.trim 去除前后空格
     - v-model.lazy 防抖
     - v-model.number 转换为数字
+
+### Vue-Router 两种路由模式的区别和原理
+- hash
+    - 监听 window.onhashchange 事件，浏览器会记录 hash 变化
+    - 刷新，hash 不会提交到服务端
+- history
+    - history.pushState 切换路由
+    - window.onpopstate 监听路由
+    - 需要服务端配合，否则刷新后会 404
 
 ### 基于 Vue 设计一个购物车（组件结构，Vuex state 数据结构）
 
@@ -191,3 +232,36 @@ Vue 会把 template 编译成一个 render 函数，执行这个函数后会生�
 - 只比较同一层级，不跨级比较
 - tag 不相同，则直接删掉重建，不再深度比较
 - tag 和 key，两者都相同，则认为是相同节点，不再深度比较
+
+### 请用 vnode 描述一个 DOM 结构
+```html
+<div id="app" class="container">
+    <p>text</p>
+    <ul style="font-size: 20px">
+        <li>a</li>
+    </ul>
+</div>
+```
+```json5
+{
+  tag: 'div',
+  props: {
+    className: 'container',
+    id: 'app'
+  },
+  children: [
+    {
+      tag: 'p',
+      children: 'text'
+    },{
+      tag: 'ul',
+      props: {
+        style: 'font-size: 20px'
+      },
+      children: [
+        {tag: 'li', children: 'a'}
+      ]
+    }
+  ]
+}
+```
