@@ -94,7 +94,7 @@ module.exports = {
             '/learn/js/': [
                 '/learn/js/es6',
                 '/learn/js/point',
-                // '/learn/js/tools',
+                '/learn/js/tools',
                 '/learn/js/typescript'
             ],
             '/learn/css/': [

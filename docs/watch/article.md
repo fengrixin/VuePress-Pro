@@ -21,7 +21,7 @@ title: 文章
 | 选择下一个匹配项 | control + G      | command + D |
 | 撤销当前匹配项  | shift + control + G |  command + U  |
 | 选择全部匹配项  | control + command + G   | shift + command + L |
-| 添加多个光标   | option + 单击  | 同左 |
+| 添加多个光标   | option + 单击  | 同左 / option + command + ⬆⬇ ️ |
 | 向上/下添加光标 | 无 | option + command + ⬆⬇ |
 | 复制行 | command + D | shift + option + ⬆⬇ |
 | 删除行 | command + Delete | 同左 |
