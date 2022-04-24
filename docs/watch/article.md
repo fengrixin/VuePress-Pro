@@ -28,3 +28,17 @@ title: 文章
 | 移动行 | shift + option + ⬆⬇ | option + ⬆⬇ |
 | 在上方创建空行 | option + command + Enter | shift + command + Enter |
 | 在下方创建空行 | shift + command + Enter | command + Enter |
+
+## Chrome
+### 打开一个没有安全策略的新的 Chrome 浏览器
+```text
+open -n /Applications/Google\ Chrome.app/ --args --disable-web-security --user-data-dir=/Users/fengrixin/Documents/ChromeDevUserData
+```
+### 打开一个全新的 Chrome 浏览器
+```text
+open -n /Applications/Google\ Chrome.app/ --args --user-data-dir=/User/fengrixin/Desktop/test
+```
+
+### chrome://media-engagement
+查看浏览器内所有网站的用户参与度
+
