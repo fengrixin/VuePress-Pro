@@ -34,7 +34,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       with:
-        target_branch: gh-pages
+        target_branch: pages
         build_dir: docs/.vuepress/dist
       
     # - name: deploy to github pages
