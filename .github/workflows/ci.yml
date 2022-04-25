@@ -30,10 +30,18 @@ jobs:
       run: npm run build
 
     - name: deploy to github pages
+      uees: crazy-max/ghaction-github-pages@v2
       env:
-        GITHUB_REPO: github.com/fengrixin/fengrixin.github.io
-      run: |
-        cd docs/.vuepress/dist
-        git config user.name "fengrixin"
-        git config user.email "fengrixin@yeah.net"
-        git push --force --quiet "https://${{ secrets.ACCESS_RIXIN_TOKEN }}@$GITHUB_REPO" master:master
+        GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      with:
+        target_branch: gh-pages
+        build_dir: docs/.vuepress/dist
+      
+    # - name: deploy to github pages
+    #   env:
+    #     GITHUB_REPO: github.com/fengrixin/fengrixin.github.io
+    #   run: |
+    #     cd docs/.vuepress/dist
+    #     git config user.name "fengrixin"
+    #     git config user.email "fengrixin@yeah.net"
+    #     git push --force --quiet "https://${{ secrets.ACCESS_RIXIN_TOKEN }}@$GITHUB_REPO" master:master
