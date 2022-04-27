@@ -1,17 +1,18 @@
 name: rixin
 
-on:
+on: #触发条件
   push:
     branches: [master]
   
 jobs:
   rixin:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # 指定允许的环境
 
     steps:
     - name: checkout codes
       uses: actions/checkout@v2
 
+    # 指定 node 版本
     - name: setup node
       uses: actions/setup-node@v1
       with:
@@ -29,6 +30,7 @@ jobs:
     - name: build vuepress
       run: npm run build
 
+    # 部署到本仓库的 pages 分支
     - name: deploy to github pages
       uses: crazy-max/ghaction-github-pages@v2
       env:
@@ -37,6 +39,7 @@ jobs:
         target_branch: pages
         build_dir: docs/.vuepress/dist 
       
+      # 部署到 fengrixin.github.io 仓库的 master 分支
     - name: deploy to github other repository
       env:
         GITHUB_REPO: github.com/fengrixin/fengrixin.github.io
@@ -45,5 +48,5 @@ jobs:
         git config user.name "fengrixin"
         git config user.email "fengrixin@yeah.net"
         git add .
-        git commit -m "GitHub Actions Auto Builder at $(date + '%Y-%m-%d %H:%M:%S')"
+        git commit -m "GitHub Actions Auto Builder & push this repository"
         git push --force --quiet "https://${{ secrets.ACCESS_TOKEN }}@$GITHUB_REPO" master:master
