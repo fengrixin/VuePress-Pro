@@ -1,3 +1,5 @@
+const { copyCodePlugin } = require("vuepress-plugin-copy-code2");
+
 module.exports = {
     base: '/',
     title: 'fengrixin',
@@ -26,17 +28,14 @@ module.exports = {
         nav: [
             { text: '首页', link: '/' },
             {
-                text: '地基',
+                text: 'JS',
                 items: [
-                    { text: '数据结构和算法', link: '/learn/algorithm/' },
-                    { text: '浏览器工作原理', link: '/learn/browser/' },
-                    { text: 'JavaScript', link: '/learn/js/es6' },
-                    { text: 'CSS', link: '/learn/css/' },
-                    { text: 'HTML', link: '/learn/html/' },
+                    { text: 'ES6+', link: '/learn/js/es6' },
+                    { text: '八股文', link: '/learn/js/point' },
                 ]
             },
             {
-                text: '楼层',
+                text: 'Vue',
                 items: [
                     { text: 'Vue', link: '/learn/vue/' },
                     { text: 'Node.js', link: '/learn/node/' },
@@ -44,15 +43,20 @@ module.exports = {
                 ]
             },
             {
-                text: '电梯',
+                text: '浏览器',
                 items: [
-                    { text: '工具链', link: '/learn/tools/chain' },
-                    { text: '发布系统', link: '/learn/tools/publish' },
-                    { text: '监控系统', link: '/learn/tools/monitor' },
+                    { text: 'CSS', link: '/learn/css/' },
+                    { text: 'HTML', link: '/learn/html/' },
                 ]
             },
             {
-                text: '看一看',
+                text: '工程化', link: '/learn/tools/chain'
+            },
+            {
+                text: '算法', link: '/algorithm/data_structure'
+            },
+            {
+                text: '其他',
                 items: [
                     {
                         text: '仓库',
@@ -71,55 +75,37 @@ module.exports = {
                     }
                 ]
             },
-            // {
-            //     text: '唠一唠',
-            //     items: [
-            //         // {text: '关于生活', link: '/chat/life'},
-            //         // {text: '关于工作', link: '/chat/work'},
-            //         {text: '关于投资', link: '/chat/invest'}
-            //     ]
-            // },
             { text: 'GitHub', link: 'https://github.com/fengrixin' }
         ],
         sidebarDepth: 2,
         sidebar: {
-            '/learn/algorithm/': [
-                '/learn/algorithm/',
-                '/learn/algorithm/data_structure',
-                '/learn/algorithm/algorithm'
+            '/algorithm/': [
+                '/algorithm/data_structure',
+                '/algorithm/algorithm'
             ],
             '/learn/browser/': [
                 '/learn/browser/'
             ],
-            '/learn/js/': [
+            '/learn/js/es6': [
                 '/learn/js/es6',
-                '/learn/js/point',
                 '/learn/js/tools',
-                '/learn/js/typescript'
             ],
+            '/learn/js/point': ['/learn/js/point'],
             '/learn/css/': [
                 '/learn/css/',
                 '/learn/css/magic'
             ],
-            '/learn/html/': [
-                '/learn/html/'
-            ],
+            '/learn/html/': ['/learn/html/'],
             '/learn/vue/': [
                 '/learn/vue/',
                 '/learn/vue/nuxt'
             ],
-            '/learn/node/': [
-                '/learn/node/'
-            ],
+            '/learn/node/': ['/learn/node/'],
             '/learn/mini/': [
                 '/learn/mini/',
                 '/learn/mini/issue'
             ],
-            '/learn/tools/': [
-                '/learn/tools/chain',
-                '/learn/tools/publish',
-                '/learn/tools/monitor'
-            ],
+            '/learn/tools/chain': ['/learn/tools/chain'],
             '/watch/': [
                 '/watch/repository',
                 '/watch/website',
@@ -127,14 +113,13 @@ module.exports = {
                 '/watch/plugin'
             ],
             '/chat/': [
-                // '/chat/life',
-                // '/chat/work',
                 '/chat/invest'
             ]
         },
         lastUpdated: '上次更新'
     },
     plugins: [
+        copyCodePlugin({}),
         [
             '@vuepress/google-analytics',
             {
