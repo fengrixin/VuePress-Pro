@@ -31,8 +31,8 @@ title: 算法
 
 冒泡排序是一种稳定排序。
 
-```javascript
-function sort(arr) {
+```typescript
+function sort(arr: number[]) : number[] {
   for (let i = 0, leni = arr.length - 1; i < leni; i++) {
     for (let j = 0, lenj = arr.length - i - 1; j < lenj; j++) {
       let temp = 0;
@@ -53,8 +53,8 @@ sort([2, 3, 5, 1, 4])
 
 - 使用一个变量进行标记，如果在某轮排序中，没有元素交换，则说明数列已然有序，可以直接跳出循环，节省循环次数
 
-```javascript
-function sort(arr) {
+```typescript
+function sort(arr: number[]) : number[] {
   for (let i = 0, leni = arr.length - 1; i < leni; i++) {
     let isSorted = true;
     for (let j = 0, lenj = arr.length - i - 1; j < lenj; j++) {
@@ -76,8 +76,8 @@ sort([4, 5, 1, 2, 3])
 
 - 记录下最后一次元素交换的位置，该位置即为无序数列的边界，往后就是有序区了，无需再遍历下去
 
-```javascript
-function sort(arr) {
+```typescript
+function sort(arr: number[]) : number[] {
   for (let i = 0, leni = arr.length - 1; i < leni; i++) {
     let isSorted = true;
     let sortBorder = arr.length - 1;
@@ -144,8 +144,8 @@ console.log(Array.from(new Set(arr.flat(Infinity))).sort((a, b) => a - b))
 - 请把两个数组 ['A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'D1', 'D2'] 和 ['A', 'B', 'C', 'D']
   ，合并为 ['A1', 'A2', 'A', 'B1', 'B2', 'B', 'C1', 'C2', 'C', 'D1', 'D2', 'D']。
 
-```javascript
-function concatArr(arr1, arr2) {
+```typescript
+function concatArr(arr1: number[], arr2: number[]) : number[] {
   let arr = [...arr1]
   let currentIndex = 0
   for (let i = 0, len = arr2.length; i < len; i++) {
@@ -163,6 +163,33 @@ function concatArr(arr1, arr2) {
 let arr1 = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'D1', 'D2']
 let arr2 = ['A', 'B', 'C', 'D']
 console.log(arr1, arr2, concatArr(arr1, arr2))
+```
+
+- 把一个数组旋转 k 步
+```typescript
+// O(n^2)
+function rotate1(arr:number[], k:number) : number[] {
+  const len = arr.length
+  if(!k || len === 0) return arr
+  const step = Math.abs(k % len)
+  for(let i = 0; i < step; i++) {
+    const n = arr.pop()
+    if(n) {
+      arr.unshift(n) // unshift、shift、splice 复杂度为 O(n)
+    }
+  }
+  return arr
+}
+// O(1)
+function rotate2(arr:number[], k:number) : number[] {
+  const len = arr.length
+  if(!k || len === 0) return arr
+  const step = Math.abs(k % len)
+  const tempS = arr.slice(-step)
+  const tempE = arr.slice(0, len - step)
+  return tempS.concat(tempE)
+}
+
 ```
 
 ### 字符串
