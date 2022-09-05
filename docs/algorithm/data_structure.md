@@ -81,6 +81,27 @@ title: 数据结构
 
 因此，链表适合写操作多，读操作少的场景
 
+```javascript
+// 根据数组创建单向链表
+function createLinkList(arr) {
+    const len = arr.length
+    if(len === 0) throw new Error("arr is empty");
+    let curNode = {
+        value: arr[len - 1],
+        next: null
+    }
+    if(len === 1) return curNode
+    for(let i = len - 2; i >= 0; i--) {
+        curNode = {
+            value: arr[i],
+            next: curNode
+        }
+    }
+    return curNode
+}
+createLinkList([1,2,3,4])
+```
+
 ## 栈
 > 栈是一种线性逻辑结构，遵循「先进后出」原则（可以想象一下羽毛球桶）。最先存入的元素叫做「栈底」，最后存入的就是「栈顶」。
 >
@@ -121,16 +142,16 @@ const n = arr.pop() // 出栈 O(1)
 - 优先队列 - 遵循的不是先入先出，而是谁的优先级最高，谁先出队
 
 实现：
-```typescript
+```javascript
 // 两个栈实现一个队列
 class Queen {
-    private stack1: number[] = []
-    private stack2: number[] = []
+    private stack1 = []
+    private stack2 = []
 
-    add(n: number) { // 入队 O(1)
+    add(n) { // 入队 O(1)
         this.stack1.push(n)
     }
-    delete(): number | null { // 出队 O(n)
+    delete() { // 出队 O(n)
         let res 
         const stack1 = this.stack1
         const stack2 = this.stack2
@@ -152,7 +173,7 @@ class Queen {
         }
         return res || null
     }
-    get length(): number {
+    get length() {
         return this.stack1.length
     }
 }
