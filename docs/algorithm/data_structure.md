@@ -97,6 +97,13 @@ title: 数据结构
 - 小程序的页面跳转
 - 面包屑导航
 
+实现：
+```javascript
+const arr = []
+arr.push(1) // 入栈 O(1)
+const n = arr.pop() // 出栈 O(1)
+```
+
 ## 队列
 > 队列也是一种线性逻辑结构，遵循「先入先出」原则（可以想象一下排队）。队列的出口端叫「队头」，入口端叫「队尾」。
 >
@@ -112,6 +119,44 @@ title: 数据结构
 变种：
 - 双端队列 - 综合了栈和队列的优点，队头和队尾都可以入队出队
 - 优先队列 - 遵循的不是先入先出，而是谁的优先级最高，谁先出队
+
+实现：
+```typescript
+// 两个栈实现一个队列
+class Queen {
+    private stack1: number[] = []
+    private stack2: number[] = []
+
+    add(n: number) { // 入队 O(1)
+        this.stack1.push(n)
+    }
+    delete(): number | null { // 出队 O(n)
+        let res 
+        const stack1 = this.stack1
+        const stack2 = this.stack2
+        // 1. 将 stack1 所有元素压到 stack2 中
+        while(stack1.length) {
+            const n = stack1.pop()
+            if(n) {
+                stack2.push(n)
+            }
+        }
+        // 2. 移除 stack2 的栈顶元素
+        res = stack2.pop()
+        // 3. 将 stack2 剩下元素压回 stack1 中
+        while(stack2.length) {
+            const n = stack2.pop()
+            if(n) {
+                stack1.push(n)
+            }
+        }
+        return res || null
+    }
+    get length(): number {
+        return this.stack1.length
+    }
+}
+```
 
 ## 散列表
 > 散列表又叫哈希表，是存储「key-value」映射的集合。它是基于数组实现的。
