@@ -182,6 +182,7 @@ binarySearch([1,2,3,4,5,6], 2)
 ### 数组
 
 - [两数之和](https://leetcode-cn.com/problems/two-sum)
+  思路：双指针（先保证有序，再遍历，头尾相加，大了尾回退，小了头前进）
 - [删除排序数组中的重复项](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array)
 - [合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array)
 

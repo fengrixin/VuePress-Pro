@@ -264,19 +264,54 @@ class Queue {
 > 存储方式可以是数组或者链表
 
 ![二叉树](https://static001.geekbang.org/resource/image/09/2b/09c2972d56eb0cf67e727deda0e9412b.jpg)
+```javascript
+const node = {
+    value: 5,
+    left: {
+        value: 3,
+        left: { value: 2, left: null, right: null },
+        right: { value: 4, left: null, right:  null }
+    },
+    right: {
+        value: 7,
+        left: { value: 6, left: null, right: null },
+        right: { value: 8, left: null, right:  null }
+    }
+}
+```
 
 ### 深度优先遍历
 - 前序遍历
-
     顺序为 根节点->左子树->右子树
+```javascript
+function preOrderTraverse(node) {
+    if(node == null) return
+    preorderTraverse(node.left)
+    preorderTraverse(node.right)
+}
+```
     
 - 中序遍历
-    
     顺序为 左子树->根节点->右子树
-    
-- 后序遍历
+```javascript
+function inOrderTraverse(node) {
+    if(node == null) return
+    inOrderTraverse(node.left)
+    console.log(node.value)
+    inOrderTraverse(node.right)
+}
+```
 
+- 后序遍历
     顺序为 左子树->右子树->根节点
+```javascript
+function postOrderTraverse(node) {
+    if(node == null) return
+    postOrderTraverse(node.left)
+    postOrderTraverse(node.right)
+    console.log(node.value)
+}
+```
 
 ### 广度优先遍历
 - 层序遍历
