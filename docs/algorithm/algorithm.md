@@ -112,6 +112,58 @@ sort([2, 1, 3, 4, 5])
 ### 堆排序
 
 ## 二分查找
+- 时间复杂度： O(logn)
+- 凡有序，必二分！
+- 递归（代码逻辑清晰）
+```javascript
+function binarySearch(arr, target, startIndex, endIndex) {
+  const length = arr.length
+  if(length === 0) return -1
+  // 刚开始，定义范围
+  if(startIndex == null) startIndex = 0
+  if(endIndex == null) endIndex = length
+  // 找不到
+  if(startIndex > endIndex) return -1
+  // 中间位置
+  const midIndex = Math.floor((startIndex + endIndex) / 2)
+  const midValue = arr[midIndex]
+  if(target < midValue) {
+    // 目标值在左侧
+    return binarySearch(arr, target, startIndex, midIndex - 1)
+  } else if(target > midValue) {
+    // 目标值在右侧
+    return binarySearch(arr, target, midIndex + 1, endIndex)
+  } else {
+    // 找到了
+    return midIndex
+  }
+}
+```
+- 非递归（性能好一些些，递归的函数调用开销会多一些）
+```javascript
+function binarySearch(arr, target) {
+  const length = arr.length
+  if(length === 0) return -1
+  let startIndex = 0 // 开始位置
+  let endIndex = length - 1 // 结束位置
+  while(startIndex <= endIndex) {
+    const midIndex = Math.floor((startIndex + endIndex) / 2)
+    const midValue = arr[midIndex]
+    if(target < midValue) {
+      // 目标值在左侧
+      endIndex = midIndex - 1
+    } else if(target > midValue) {
+      // 目标值在右侧
+      startIndex = midIndex + 1
+    } else {
+      // 找到了
+      return midIndex
+    }
+  }
+  return -1
+}
+binarySearch([1,2,3,4,5,6], 2)
+```
 
 ## 哈希算法
 
