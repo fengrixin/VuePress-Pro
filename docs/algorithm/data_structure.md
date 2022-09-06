@@ -143,14 +143,77 @@ const n = arr.pop() // 出栈 O(1)
 
 实现：
 ```javascript
-// 两个栈实现一个队列
-class Queen {
-    private stack1 = []
-    private stack2 = []
+// 链表实现队列 - 性能最好
+class Queue {
+    head = null
+    tail = null
+    len = 0
+
+    add(n) { // tail 入队 O(1)
+        const newNode = { value: n, next: null }
+        // 1. 处理第一个元素
+        if(this.head == null) {
+            this.head = newNode
+        }
+        // 2. 处理 tail
+        const tailNode = this.tail
+        if(tailNode) {
+            tailNode.next = newNode // 最后一个元素指向新节点
+        }
+        this.tail = newNode // tail 指针指向新节点
+
+        // 记录长度
+        this.len++
+    }
+
+    delete() { // head 出队 O(1)
+        const headNode = this.head
+        if(headNode == null || this.len <= 0) return null
+        // 取值
+        const value = headNode.value
+        // 处理 head
+        this.head = headNode.next
+
+        // 记录长度
+        this.len--
+        
+        return value
+    }
+
+    get length() {
+        // 遍历链表复杂度为 O(n)，因此记录长度很有必要
+        return this.len
+    }
+}
+// 性能测试
+const q1 = new Queue()
+console.time('queue with linkList')
+for(let i=0;  i<10*10000; i++) {
+    q1.add(i)
+}
+for(let i=0;  i<10*10000; i++) {
+    q1.delete()
+}
+console.timeEnd('queue with linkList')
+const q2 = []
+console.time('queue with array')
+for(let i=0;  i<10*10000; i++) {
+    q2.push(i)
+}
+for(let i=0;  i<10*10000; i++) {
+    q2.shift()
+}
+console.timeEnd('queue with array')
+
+// 两个栈实现一个队列 - 性能比数组实现更拉垮
+class Queue {
+    stack1 = []
+    stack2 = []
 
     add(n) { // 入队 O(1)
         this.stack1.push(n)
     }
+
     delete() { // 出队 O(n)
         let res 
         const stack1 = this.stack1
