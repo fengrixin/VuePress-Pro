@@ -194,6 +194,53 @@ function rotate2(arr, k) {
 rotate2([1,2,3,4,5,6,7], 3)
 ```
 
+### 链表
+- 反转单向链表
+```javascript
+function reverseLinkList(listNode) {
+  // 定义三个指针
+  let prevNode = undefined
+  let curNode = undefined
+  let nextNode = listNode
+  // 以 nextNode 为主，遍历链表
+  while(nextNode) {
+    // 1. 第一个元素指向 null，反转为最后一位
+    if(curNode && !prevNode) {
+      curNode.next = null
+    }
+    // 2. 反转指针
+    if(curNode && prevNode) {
+      curNode.next = prevNode
+    }
+    // 3. 三个指针向后移动
+    prevNode = curNode
+    curNode = nextNode
+    nextNode = nextNode.next
+  }
+  // 4. 反转最后一个元素
+  curNode.next = prevNode
+
+  return curNode
+}
+function createLinkList(arr) {
+    const len = arr.length
+    if(len === 0) throw new Error("arr is empty");
+    let curNode = {
+        value: arr[len - 1],
+        next: null
+    }
+    if(len === 1) return curNode
+    for(let i = len - 2; i >= 0; i--) {
+        curNode = {
+            value: arr[i],
+            next: curNode
+        }
+    }
+    return curNode
+}
+reverseLinkList(createLinkList([1,2,3,4]))
+```
+
 ### 字符串
 
 - [反转字符串](https://leetcode-cn.com/problems/reverse-string)
