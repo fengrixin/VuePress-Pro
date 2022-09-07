@@ -185,6 +185,29 @@ binarySearch([1,2,3,4,5,6], 2)
   思路：双指针（先保证有序，再遍历，头尾相加，大了尾回退，小了头前进）
 - [删除排序数组中的重复项](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array)
 - [合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array)
+- 移动 0 到数组末尾，要求在原数组内操作
+```javascript
+function moveZero(arr) {
+  const length = arr.length
+  if(length === 0) return
+  // 双指针
+  let i
+  let j = -1
+  for(i = 0; i < length; i++) {
+    if(arr[i] === 0 && j < 0) { // j 指向第一个 0
+      j = i
+    }
+    if(arr[i] !== 0 && j >= 0) { // 交换
+      const n = arr[i]
+      arr[i] = arr[j]
+      arr[j] = n
+      j++
+    }
+  }
+  return arr
+}
+moveZero([1,0,1,1,1])
+```
 
 - 已知如下数组，编写一个程序将数组扁平化去并除其中重复部分数据，最终得到一个升序且不重复的数组
 
