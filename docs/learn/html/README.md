@@ -13,6 +13,11 @@ title: HTML5
 
 一旦下载完，渲染引擎就会中断渲染，执行完这个脚本后，再继续完成之前的渲染，多个 async 脚本是不能保证加载顺序的。
 
+## offsetHeight scrollHeight clientHeight
+- offsetHeight = border + padding + content
+- clientHeight = padding + content
+- scrollHeight = padding + 实际内容尺寸
+
 
 ## 面试题
  

@@ -58,6 +58,7 @@ module.exports = {
         items: [
           { text: "CSS", link: "/learn/css/" },
           { text: "HTML", link: "/learn/html/" },
+          { text: "面试", link: "/learn/interview/step-1" },
         ],
       },
       {
@@ -68,10 +69,10 @@ module.exports = {
         text: "算法",
         link: "/algorithm/data_structure",
       },
-      {
-        text: "面试",
-        link: "/interview/step-1",
-      },
+    //   {
+    //     text: "面试",
+    //     link: "/learn/interview/step-1",
+    //   },
       {
         text: "其他",
         items: [
@@ -97,7 +98,6 @@ module.exports = {
     sidebarDepth: 2,
     sidebar: {
       "/algorithm/": ["/algorithm/data_structure", "/algorithm/algorithm"],
-      "/interview/": ["/interview/step-1"],
       "/learn/browser/": ["/learn/browser/"],
       "/learn/js/es6": ["/learn/js/es6", "/learn/js/tools"],
       "/learn/js/point": ["/learn/js/point"],
@@ -107,6 +107,7 @@ module.exports = {
       "/learn/node/": ["/learn/node/"],
       "/learn/mini/": ["/learn/mini/", "/learn/mini/issue"],
       "/learn/tools/chain": ["/learn/tools/chain"],
+      "/learn/interview/": ["/learn/interview/step-1"],
       "/watch/": [
         "/watch/repository",
         "/watch/website",
