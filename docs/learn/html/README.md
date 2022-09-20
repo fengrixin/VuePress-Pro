@@ -2,9 +2,7 @@
 title: HTML5
 ---
 
-## 语义化
-
-### defer 和 async 的区别
+## defer 和 async 的区别
 - 并行下载 js
 - defer：渲染完再执行
 
@@ -17,6 +15,14 @@ title: HTML5
 
 - 对比图
 ![](https://pic.imgdb.cn/item/632925a916f2c2beb162ad4c.jpg)
+
+## prefetch 和 dns-prefetch 的区别
+(不是一个概念)
+- preload：资源在当前页面使用，会**优先**加载
+- prefetch：资源在未来页面使用，**空闲**时加载
+- 
+- dns-prefetch 即 DNS 预查询
+- preconnect 即 DNS 预连接
 
 ## offsetHeight scrollHeight clientHeight
 - offsetHeight = border + padding + content
