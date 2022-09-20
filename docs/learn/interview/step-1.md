@@ -56,3 +56,32 @@ title: 面试题
 - cookie 默认不可跨域共享，但有些情况下可设置为共享
 - 主域名相同，如：www.baidu.com、image.baidu.com
 - 设置 cookie 的 domain 为主域名（.baidu.com），即可共享 cookie
+
+## 输入 url 到网页展示的过程发生了什么？
+### 网络请求
+- DNS 查询（得到 IP），建立 TCP 连接（三次握手）
+- 浏览器发起 HTTP 请求
+- 收到请求响应，得到 HTML 源代码
+#### 继续请求静态资源
+- 解析 HTML 过程中，遇到静态资源还会继续发起网络请求
+- JS、CSS、图片、视频等
+- 注意：静态资源可能有强缓存，此时不必请求
+### 解析：字符串 -> 结构化数据
+- HTML 构建 DOM 树
+- CSS 构建 CSSOM 树（style tree）
+- 两者结合，形成 Render Tree
+![](https://pic.imgdb.cn/item/6329356016f2c2beb1732de4.jpg)
+#### 优化解析
+- CSS 放在 <head> 中，不要异步加载 CSS
+- JS 放在 <body> 最下面（或合理使用 defer、async）
+- <img> 提前定义 width height
+### 渲染：Render Tree 绘制到页面
+- 计算各个 DOM 的尺寸、定位，最后绘制到页面
+- 遇到 JS 可能会执行（参考 defer async）
+- 异步 CSS、图片加载，可能会触发重新渲染
+
+## 重绘（repaint）和重排（reflow）有什么区别？
+### 动态网页随时都会重绘重排
+- 动画
+- 弹窗
+- 元素的增加/删除、显示/隐藏
