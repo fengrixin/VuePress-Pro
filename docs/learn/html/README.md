@@ -5,13 +5,18 @@ title: HTML5
 ## 语义化
 
 ### defer 和 async 的区别
+- 都是异步下载 js
 - defer：渲染完再执行
 
 要等到整个页面在内存中正常渲染结束（DOM 结构完全生成以及其他脚本执行完成）才会执行，多个 defer 脚本会按照它们在页面出现的顺序进行加载。
+（类似把 script 写在 body 底部）
 
 - async：下载完就执行
 
 一旦下载完，渲染引擎就会中断渲染，执行完这个脚本后，再继续完成之前的渲染，多个 async 脚本是不能保证加载顺序的。
+
+- 对比图
+![](https://pic.imgdb.cn/item/632925a916f2c2beb162ad4c.jpg)
 
 ## offsetHeight scrollHeight clientHeight
 - offsetHeight = border + padding + content
