@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: https://tva3.sinaimg.cn/large/6f8a2832ly1gjqi7j2jd7j21hc0u07wi.jpg
+heroImage: https://p0.meituan.net/dpplatform/43245f564ac688bf128cf2c03b02ad912734396.jpg
 actionText: 了解一下 →
 actionLink: /algorithm/data_structure
 features:
