@@ -215,6 +215,7 @@ html {
     - relative：相对定位 - 相对于块级元素或行内块元素自身位置进行定位
     - absolute：绝对定位 - 相对于最近的已定位的父级元素（relative, absolute, fixed）进行定位，默认是相对于 body
     - fixed：悬浮定位 - 相对于屏幕视口进行定位（祖先元素不能设置 transform 属性为非 none，否则会以该祖先元素进行定位）[传送门](https://www.imooc.com/article/67784)
+    - sticky：粘性布局，相对于 absolute 和 fixed 结合。
 - table（表格布局）
 
 ### flex 布局
@@ -368,6 +369,7 @@ white-space  // 空白处是否断行
     - 圆形
     - 半圆 / 扇形
     - 一些奇怪的角角
+![border-radius](https://pic.imgdb.cn/item/640f2f2bf144a0100701b5d4.jpg)
 
 ### **background**：[背景](https://developer.mozilla.org/zh-CN/docs/Web/CSS/background)
     - 纹理、图案
@@ -490,10 +492,25 @@ p{
 }
 ```
 
+## CSS 动画
 
-## ACSS
+[css triggers](https://csstriggers.com/)：查看各属性在不同浏览器内核下触发的渲染步骤
 
-[Atomic CSS](https://antfu.me/posts/reimagine-atomic-css-zh) 是一种 CSS 架构方法，它支持具有基于视觉功能的名称的小型、单一用途的类
+### 动画库
+[animate.css](https://animate.style/)
+
+### 硬件加速
+
+### requestAnimationFrame
+自动调节刷新频率，尽可能的把每一帧画面播放完全。
+
+## CSS 架构
+
+- [BEM](https://juejin.cn/post/7021461539236347940)
+- [SMACSS](https://juejin.cn/post/7021803661890174989)
+- [ITCSS](https://juejin.cn/post/7025903094202368036)
+- [OOCSS](https://juejin.cn/post/7021067874139635726)
+- [Atomic CSS](https://antfu.me/posts/reimagine-atomic-css-zh) 是一种 CSS 架构方法，它支持具有基于视觉功能的名称的小型、单一用途的类
 
 ### **[Windi CSS](https://cn.windicss.org/)**
 ### [Tailwind CSS](https://tailwindcss.com/)
