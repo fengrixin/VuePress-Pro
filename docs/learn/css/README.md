@@ -499,6 +499,8 @@ p{
 ### 动画库
 [animate.css](https://animate.style/)
 
+[个人库](https://fengrixin.github.io/animate/)
+
 ### 硬件加速
 
 ### requestAnimationFrame
